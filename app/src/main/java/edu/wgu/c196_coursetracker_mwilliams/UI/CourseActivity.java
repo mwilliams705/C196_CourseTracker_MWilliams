@@ -12,12 +12,12 @@ import android.view.View;
 
 import edu.wgu.c196_coursetracker_mwilliams.R;
 
-public class TermActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_term);
+        setContentView(R.layout.activity_course);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

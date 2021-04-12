@@ -13,11 +13,11 @@ public class TermEntity {
     @ColumnInfo(name = "title")
     private String term_title;
     @ColumnInfo(name = "start")
-    private Timestamp term_start;
+    private Long term_start;
     @ColumnInfo(name = "end")
-    private Timestamp term_end;
+    private Long term_end;
 
-    public TermEntity(int term_id, String term_title, Timestamp term_start, Timestamp term_end) {
+    public TermEntity(int term_id, String term_title, Long term_start, Long term_end) {
         this.term_id = term_id;
         this.term_title = term_title;
         this.term_start = term_start;
@@ -40,19 +40,19 @@ public class TermEntity {
         this.term_title = term_title;
     }
 
-    public Timestamp getTerm_start() {
+    public Long getTerm_start() {
         return term_start;
     }
 
-    public void setTerm_start(Timestamp term_start) {
+    public void setTerm_start(Long term_start) {
         this.term_start = term_start;
     }
 
-    public Timestamp getTerm_end() {
+    public Long getTerm_end() {
         return term_end;
     }
 
-    public void setTerm_end(Timestamp term_end) {
+    public void setTerm_end(Long term_end) {
         this.term_end = term_end;
     }
 

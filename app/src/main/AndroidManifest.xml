@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_CourseTracker_MWilliams">
         <activity
-            android:name=".UI.TermActivity"
-            android:label="@string/title_activity_term"
+            android:name=".UI.CourseActivity"
+            android:label="@string/title_activity_course"
             android:theme="@style/Theme.C196_CourseTracker_MWilliams.NoActionBar"></activity>
         <activity android:name=".UI.MainActivity">
             <intent-filter>

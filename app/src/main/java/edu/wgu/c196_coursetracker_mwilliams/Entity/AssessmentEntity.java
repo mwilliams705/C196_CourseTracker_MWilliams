@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Timestamp;
+import java.lang.Long;
 
 @Entity(tableName = "assessments")
 public class AssessmentEntity {
@@ -15,9 +15,9 @@ public class AssessmentEntity {
     @ColumnInfo(name = "isOA")
     private boolean isOA;
     @ColumnInfo(name = "end")
-    private Timestamp assessment_end;
+    private Long assessment_end;
 
-    public AssessmentEntity(int id, String assessment_title, boolean isOA, Timestamp assessment_end) {
+    public AssessmentEntity(int id, String assessment_title, boolean isOA, Long assessment_end) {
         this.id = id;
         this.assessment_title = assessment_title;
         this.isOA = isOA;
@@ -48,16 +48,16 @@ public class AssessmentEntity {
         isOA = OA;
     }
 
-    public Timestamp getAssessment_end() {
+    public Long getAssessment_end() {
         return assessment_end;
     }
 
-    public void setAssessment_end(Timestamp assessment_end) {
+    public void setAssessment_end(Long assessment_end) {
         this.assessment_end = assessment_end;
     }
 
     @Override
-    public String toString() {
+    public String  toString() {
         return "AssessmentEntity{" +
                 "id=" + id +
                 ", assessment_title='" + assessment_title + '\'' +

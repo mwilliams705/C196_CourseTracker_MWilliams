@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Timestamp;
-
 @Entity(tableName = "courses")
 public class CourseEntity {
     @PrimaryKey
@@ -13,15 +11,15 @@ public class CourseEntity {
     @ColumnInfo(name = "title")
     private String course_title;
     @ColumnInfo(name = "start")
-    private Timestamp course_start;
+    private Long course_start;
     @ColumnInfo(name = "end")
-    private Timestamp course_end;
+    private Long course_end;
     @ColumnInfo(name = "status")
     private String course_status;
     @ColumnInfo(name = "note")
     private String course_note;
 
-    public CourseEntity(int course_id, String course_title, Timestamp course_start, Timestamp course_end, String course_status, String course_note) {
+    public CourseEntity(int course_id, String course_title, Long course_start, Long course_end, String course_status, String course_note) {
         this.course_id = course_id;
         this.course_title = course_title;
         this.course_start = course_start;
@@ -46,19 +44,19 @@ public class CourseEntity {
         this.course_title = course_title;
     }
 
-    public Timestamp getCourse_start() {
+    public Long getCourse_start() {
         return course_start;
     }
 
-    public void setCourse_start(Timestamp course_start) {
+    public void setCourse_start(Long course_start) {
         this.course_start = course_start;
     }
 
-    public Timestamp getCourse_end() {
+    public Long getCourse_end() {
         return course_end;
     }
 
-    public void setCourse_end(Timestamp course_end) {
+    public void setCourse_end(Long course_end) {
         this.course_end = course_end;
     }
 

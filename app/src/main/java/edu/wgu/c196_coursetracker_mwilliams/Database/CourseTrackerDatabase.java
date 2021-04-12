@@ -11,6 +11,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import edu.wgu.c196_coursetracker_mwilliams.DAO.AssessmentDAO;
+import edu.wgu.c196_coursetracker_mwilliams.DAO.CourseDAO;
+import edu.wgu.c196_coursetracker_mwilliams.DAO.InstructorDAO;
+import edu.wgu.c196_coursetracker_mwilliams.DAO.NoteDAO;
+import edu.wgu.c196_coursetracker_mwilliams.DAO.TermDAO;
 import edu.wgu.c196_coursetracker_mwilliams.Entity.AssessmentEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Entity.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Entity.InstructorEntity;
@@ -20,6 +25,11 @@ import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
 @Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class, NoteEntity.class},version = 1)
 public abstract class CourseTrackerDatabase extends RoomDatabase{
 
+    public abstract TermDAO termDAO();
+    public abstract CourseDAO courseDAO();
+    public abstract AssessmentDAO assessmentDAO();
+    public abstract InstructorDAO instructorDAO();
+    public abstract NoteDAO noteDAO();
     public static final int NUM_OF_THREADS = 4;
 
     static final ExecutorService dataWriteExecutor =
@@ -31,9 +41,9 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
         if (INSTANCE==null){
             synchronized (CourseTrackerDatabase.class){
                 if (INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),CourseTrackerDatabase.class, "course_tracker_database.db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CourseTrackerDatabase.class, "course_tracker_database.db")
                             .fallbackToDestructiveMigration()
-//                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
@@ -41,17 +51,20 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
         return INSTANCE;
     }
 
-//    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
-//        @Override
-//        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-//            super.onOpen(db);
-//            dataWriteExecutor.execute(()->{
-//
-//                put code here for callback onOpen
-//
-//            });
-//
-//        }
-//    }
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            dataWriteExecutor.execute(()->{
+
+                TermDAO termDAO = INSTANCE.termDAO();
+
+                TermEntity termEntity = new TermEntity(1,"Android Dev",System.currentTimeMillis(),System.currentTimeMillis());
+                termDAO.insert(termEntity);
+
+            });
+
+        }
+    };
 
 }

@@ -10,4 +10,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_term">TermActivity</string>
+    <string name="title_activity_course">CourseActivity</string>
+    <string name="termtitle">TermTitle</string>
+    <string name="start">Start:</string>
+    <string name="end">End:</string>
+    <string name="textview">TextView</string>
+    <string name="nda">No Data Available</string>
 </resources>
