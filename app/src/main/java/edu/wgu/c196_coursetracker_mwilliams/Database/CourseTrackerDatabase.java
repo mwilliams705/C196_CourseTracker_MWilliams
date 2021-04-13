@@ -8,6 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.sql.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,7 +23,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Entity.InstructorEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Entity.NoteEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
 
-@Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class, NoteEntity.class},version = 1)
+@Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class, NoteEntity.class},version = 1, exportSchema = false)
 public abstract class CourseTrackerDatabase extends RoomDatabase{
 
     public abstract TermDAO termDAO();
@@ -59,7 +60,11 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
 
                 TermDAO termDAO = INSTANCE.termDAO();
 
-                TermEntity termEntity = new TermEntity(1,"Android Dev",System.currentTimeMillis(),System.currentTimeMillis());
+                TermEntity termEntity = new TermEntity(
+                        "Android Dev",
+                        "07/01/2021",
+                        "01/31/2022");
+                termDAO.deleteAllTerms();
                 termDAO.insert(termEntity);
 
             });

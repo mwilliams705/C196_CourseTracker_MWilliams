@@ -1,12 +1,19 @@
 package edu.wgu.c196_coursetracker_mwilliams.Entity;
 
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "courses")
+@Entity(tableName = "courses",
+        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id",unique = true)},
+        foreignKeys = {@ForeignKey(entity = TermEntity.class,
+        parentColumns = "term_id",childColumns = "term_id",onDelete = ForeignKey.CASCADE)})
 public class CourseEntity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "course_id")
     private int course_id;
     @ColumnInfo(name = "title")
     private String course_title;
@@ -18,14 +25,18 @@ public class CourseEntity {
     private String course_status;
     @ColumnInfo(name = "note")
     private String course_note;
+    @ColumnInfo(name = "term_id")
+    private int term_id;
 
-    public CourseEntity(int course_id, String course_title, Long course_start, Long course_end, String course_status, String course_note) {
+
+    public CourseEntity(int course_id, String course_title, Long course_start, Long course_end, String course_status, String course_note, int term_id) {
         this.course_id = course_id;
         this.course_title = course_title;
         this.course_start = course_start;
         this.course_end = course_end;
         this.course_status = course_status;
         this.course_note = course_note;
+        this.term_id = term_id;
     }
 
     public int getCourse_id() {
@@ -76,15 +87,16 @@ public class CourseEntity {
         this.course_note = course_note;
     }
 
+    public int getTerm_id() {
+        return term_id;
+    }
+
+    public void setTerm_id(int term_id) {
+        this.term_id = term_id;
+    }
+
     @Override
     public String toString() {
-        return "CourseEntity{" +
-                "course_id=" + course_id +
-                ", course_title='" + course_title + '\'' +
-                ", course_start=" + course_start +
-                ", course_end=" + course_end +
-                ", course_status='" + course_status + '\'' +
-                ", course_note='" + course_note + '\'' +
-                '}';
+        return course_title;
     }
 }

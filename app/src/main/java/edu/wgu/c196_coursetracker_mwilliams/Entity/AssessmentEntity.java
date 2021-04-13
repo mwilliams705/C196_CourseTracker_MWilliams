@@ -2,26 +2,34 @@ package edu.wgu.c196_coursetracker_mwilliams.Entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.lang.Long;
 
-@Entity(tableName = "assessments")
+@Entity(tableName = "assessments",
+        indices = {@Index(value = "assessment_id",unique = true),@Index(value = "course_id",unique = true)},
+        foreignKeys = @ForeignKey(entity = CourseEntity.class,
+                parentColumns = "course_id",
+                childColumns = "course_id",onDelete = ForeignKey.CASCADE))
 public class AssessmentEntity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "assessment_id")
     private int id;
     @ColumnInfo(name = "title")
     private String assessment_title;
     @ColumnInfo(name = "isOA")
     private boolean isOA;
-    @ColumnInfo(name = "end")
-    private Long assessment_end;
+    @ColumnInfo(name = "date")
+    private String assessment_date;
+    @ColumnInfo(name = "course_id")
+    private int course_id;
 
-    public AssessmentEntity(int id, String assessment_title, boolean isOA, Long assessment_end) {
-        this.id = id;
+    public AssessmentEntity(String assessment_title, boolean isOA, String assessment_date, int course_id) {
         this.assessment_title = assessment_title;
         this.isOA = isOA;
-        this.assessment_end = assessment_end;
+        this.assessment_date = assessment_date;
+        this.course_id = course_id;
     }
 
     public int getId() {
@@ -48,21 +56,19 @@ public class AssessmentEntity {
         isOA = OA;
     }
 
-    public Long getAssessment_end() {
-        return assessment_end;
+    public String getAssessment_date() {
+        return assessment_date;
     }
 
-    public void setAssessment_end(Long assessment_end) {
-        this.assessment_end = assessment_end;
+    public void setAssessment_date(String assessment_date) {
+        this.assessment_date = assessment_date;
     }
 
-    @Override
-    public String  toString() {
-        return "AssessmentEntity{" +
-                "id=" + id +
-                ", assessment_title='" + assessment_title + '\'' +
-                ", isOA=" + isOA +
-                ", assessment_end=" + assessment_end +
-                '}';
+    public int getCourse_id() {
+        return course_id;
+    }
+
+    public void setCourse_id(int course_id) {
+        this.course_id = course_id;
     }
 }

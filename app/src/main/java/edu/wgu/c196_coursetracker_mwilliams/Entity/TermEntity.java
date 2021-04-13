@@ -8,17 +8,18 @@ import java.sql.Timestamp;
 
 @Entity(tableName = "terms")
 public class TermEntity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "term_id")
     private int term_id;
     @ColumnInfo(name = "title")
     private String term_title;
     @ColumnInfo(name = "start")
-    private Long term_start;
+    private String term_start;
     @ColumnInfo(name = "end")
-    private Long term_end;
+    private String term_end;
 
-    public TermEntity(int term_id, String term_title, Long term_start, Long term_end) {
-        this.term_id = term_id;
+
+    public TermEntity(String term_title, String term_start, String term_end) {
         this.term_title = term_title;
         this.term_start = term_start;
         this.term_end = term_end;
@@ -40,19 +41,19 @@ public class TermEntity {
         this.term_title = term_title;
     }
 
-    public Long getTerm_start() {
+    public String getTerm_start() {
         return term_start;
     }
 
-    public void setTerm_start(Long term_start) {
+    public void setTerm_start(String term_start) {
         this.term_start = term_start;
     }
 
-    public Long getTerm_end() {
+    public String getTerm_end() {
         return term_end;
     }
 
-    public void setTerm_end(Long term_end) {
+    public void setTerm_end(String term_end) {
         this.term_end = term_end;
     }
 

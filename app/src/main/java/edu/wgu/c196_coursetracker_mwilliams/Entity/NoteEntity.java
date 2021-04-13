@@ -2,21 +2,30 @@ package edu.wgu.c196_coursetracker_mwilliams.Entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "notes")
+@Entity(tableName = "notes",
+        indices = {@Index(value = "note_id",unique = true),@Index(value = "assessment_id",unique = true)},
+        foreignKeys = @ForeignKey(entity = AssessmentEntity.class,
+                parentColumns = "assessment_id",
+                childColumns = "assessment_id",onDelete = ForeignKey.CASCADE))
 public class NoteEntity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "note_id")
     private int id;
     @ColumnInfo(name = "title")
     private String note_title;
     @ColumnInfo(name = "content")
     private String note_content;
+    @ColumnInfo(name = "assessment_id")
+    private int assessment_id;
 
-    public NoteEntity(int id, String note_title, String note_content) {
-        this.id = id;
+    public NoteEntity(String note_title, String note_content, int assessment_id) {
         this.note_title = note_title;
         this.note_content = note_content;
+        this.assessment_id = assessment_id;
     }
 
     public int getId() {
@@ -43,12 +52,11 @@ public class NoteEntity {
         this.note_content = note_content;
     }
 
-    @Override
-    public String toString() {
-        return "NoteEntity{" +
-                "id=" + id +
-                ", note_title='" + note_title + '\'' +
-                ", note_content='" + note_content + '\'' +
-                '}';
+    public int getAssessment_id() {
+        return assessment_id;
+    }
+
+    public void setAssessment_id(int assessment_id) {
+        this.assessment_id = assessment_id;
     }
 }

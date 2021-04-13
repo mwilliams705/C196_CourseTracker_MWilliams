@@ -10,14 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermDetailActivity;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
+
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -41,8 +45,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         if (terms != null){
             final TermEntity current = terms.get(position);
             holder.termTitle.setText(current.getTerm_title());
-            holder.termStart.setText(current.getTerm_start().toString());
-            holder.termEnd.setText(current.getTerm_end().toString());
+            holder.termStart.setText(current.getTerm_start());
+            holder.termEnd.setText(current.getTerm_end());
 
         }
 
@@ -63,6 +67,10 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
 
 
+
+
+
+
     class TermViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView termTitle;
@@ -79,13 +87,18 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                  int position = getAdapterPosition();
                  final TermEntity current = terms.get(position);
                 Intent intent = new Intent(context, TermDetailActivity.class);
+
                 intent.putExtra("termTitle",current.getTerm_title());
                 intent.putExtra("termStart",current.getTerm_start());
                 intent.putExtra("termEnd",current.getTerm_end());
                 intent.putExtra("termID",current.getTerm_id());
                 context.startActivity(intent);
+
             });
         }
     }
 
+    public Context getContext() {
+        return context;
+    }
 }

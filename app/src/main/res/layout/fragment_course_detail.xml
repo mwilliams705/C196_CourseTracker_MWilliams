@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Fragments.CourseDetailFragment">
+
+    <TextView
+        android:id="@+id/courseNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/course_name"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/courseStartLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/start"
+        app:layout_constraintStart_toStartOf="@+id/courseNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/courseNameTextView" />
+
+    <TextView
+        android:id="@+id/courseEndLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/end"
+        app:layout_constraintEnd_toEndOf="@+id/courseStartLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseStartLabel" />
+
+    <TextView
+        android:id="@+id/courseStartTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="@string/textview"
+        app:layout_constraintBottom_toBottomOf="@+id/courseStartLabel"
+        app:layout_constraintStart_toEndOf="@+id/courseStartLabel"
+        app:layout_constraintTop_toTopOf="@+id/courseStartLabel" />
+
+    <TextView
+        android:id="@+id/courseEndTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="@string/textview"
+        app:layout_constraintBottom_toBottomOf="@+id/courseEndLabel"
+        app:layout_constraintStart_toEndOf="@+id/courseEndLabel"
+        app:layout_constraintTop_toTopOf="@+id/courseEndLabel" />
+
+    <TextView
+        android:id="@+id/courseStatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/status"
+        app:layout_constraintEnd_toEndOf="@+id/courseEndLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseEndLabel" />
+
+    <TextView
+        android:id="@+id/courseStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="@string/textview"
+        app:layout_constraintBottom_toBottomOf="@+id/courseStatusLabel"
+        app:layout_constraintStart_toEndOf="@+id/courseStatusLabel"
+        app:layout_constraintTop_toTopOf="@+id/courseStatusLabel" />
+
+    <TextView
+        android:id="@+id/CourseNotesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Notes:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/courseStatusLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseStatusLabel" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/CourseNotesLabel"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/courseNoteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/lorem"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/courseAssessmentsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/assessments"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/CourseNotesLabel"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/assessmentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseAssessmentsLabel" />
+</androidx.constraintlayout.widget.ConstraintLayout>
