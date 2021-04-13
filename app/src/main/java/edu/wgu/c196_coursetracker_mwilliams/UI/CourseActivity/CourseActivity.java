@@ -1,4 +1,4 @@
-package edu.wgu.c196_coursetracker_mwilliams.UI;
+package edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivity;
 
 import android.os.Bundle;
 

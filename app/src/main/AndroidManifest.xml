@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_CourseTracker_MWilliams">
         <activity
-            android:name=".UI.CourseActivity"
-            android:label="@string/title_activity_course"
+            android:name=".UI.TermActivity.TermActivity"
+            android:label="@string/title_activity_term"
             android:theme="@style/Theme.C196_CourseTracker_MWilliams.NoActionBar"></activity>
+        <activity
+            android:name=".UI.AssessmentActivity.AssessmentActivity"
+            android:label="@string/title_activity_assessment"
+            android:theme="@style/Theme.C196_CourseTracker_MWilliams.NoActionBar" />
+        <activity
+            android:name=".UI.CourseActivity.CourseActivity"
+            android:label="@string/title_activity_course"
+            android:theme="@style/Theme.C196_CourseTracker_MWilliams.NoActionBar" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
