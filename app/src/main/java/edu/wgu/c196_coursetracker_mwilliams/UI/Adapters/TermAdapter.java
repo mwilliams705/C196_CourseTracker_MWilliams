@@ -14,7 +14,8 @@ import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivity.CourseActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.TermDetailActivity;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
 
@@ -22,8 +23,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     private final Context context;
     private List<TermEntity> terms;
 
-    public TermAdapter(LayoutInflater inflater, Context context) {
-        this.inflater = inflater;
+    public TermAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
         this.context = context;
     }
 
@@ -40,6 +41,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         if (terms != null){
             final TermEntity current = terms.get(position);
             holder.termTitle.setText(current.getTerm_title());
+            holder.termStart.setText(current.getTerm_start().toString());
+            holder.termEnd.setText(current.getTerm_end().toString());
 
         }
 
@@ -60,19 +63,22 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
 
 
-
     class TermViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView termTitle;
+        private final TextView termStart;
+        private final TextView termEnd;
 
 
         public TermViewHolder(@NonNull View itemView) {
             super(itemView);
             termTitle = itemView.findViewById(R.id.termTitle);
+            termStart  = itemView.findViewById(R.id.termStartDateTextView);
+            termEnd = itemView.findViewById(R.id.termEndDateTextView);
             itemView.setOnClickListener( v -> {
                  int position = getAdapterPosition();
                  final TermEntity current = terms.get(position);
-                Intent intent = new Intent(context, CourseActivity.class);
+                Intent intent = new Intent(context, TermDetailActivity.class);
                 intent.putExtra("termTitle",current.getTerm_title());
                 intent.putExtra("termStart",current.getTerm_start());
                 intent.putExtra("termEnd",current.getTerm_end());
