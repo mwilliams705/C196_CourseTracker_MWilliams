@@ -29,6 +29,13 @@ public class CourseRepository {
 
 
     //Get methods
+    public LiveData<List<CourseEntity>> getAllCoursesByTermId(int term_id){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            allCourses=courseDAO.getCoursesByTermId(term_id);
+        });
+        return allCourses;
+    }
+
     public LiveData<List<CourseEntity>> getAllCourses(){
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allCourses=courseDAO.getAllCourses();

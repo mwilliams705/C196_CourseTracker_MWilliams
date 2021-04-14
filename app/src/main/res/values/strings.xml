@@ -30,4 +30,7 @@
     <string name="assessments">Assessments:</string>
     <string name="snack_bar_undo">UNDO</string>
     <string name="snack_bar_text">Deleted!</string>
+    <string name="add_course">Add Course</string>
+    <string name="notes">Notes:</string>
+    <string name="courses">Courses:</string>
 </resources>

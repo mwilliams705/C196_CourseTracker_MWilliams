@@ -67,15 +67,6 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
                             "01/31/202"+i);
                     termDAO.insertTerm(termEntitySpring);
 
-                    CourseEntity courseEntity = new CourseEntity(
-                            "Potato 101",
-                            "00/00/00",
-                            "00/00/00",
-                            "Pending",
-                            "adsfasdfasdfasdfasdfasd",
-                            termEntitySpring.getTerm_id()
-                    );
-                    courseDAO.insertCourse(courseEntity);
 
                     TermEntity termEntityFall = new TermEntity(
                             "Fall 202"+i,
@@ -84,18 +75,6 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
 
 
                     termDAO.insertTerm(termEntityFall);
-
-
-                    CourseEntity courseEntityFall = new CourseEntity(
-                            "Potato 101",
-                            "00/00/00",
-                            "00/00/00",
-                            "Pending",
-                            "adsfasdfasdfasdfasdfasd",
-                            termEntityFall.getTerm_id()
-                    );
-                    courseDAO.insertCourse(courseEntityFall);
-
 
                 }
 

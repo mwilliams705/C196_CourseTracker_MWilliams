@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermDetailActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
 
@@ -75,9 +74,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
         public TermViewHolder(@NonNull View itemView) {
             super(itemView);
-            termTitle = itemView.findViewById(R.id.termTitle);
-            termStart  = itemView.findViewById(R.id.termStartDateTextView);
-            termEnd = itemView.findViewById(R.id.termEndDateTextView);
+            termTitle = itemView.findViewById(R.id.courseTitle);
+            termStart  = itemView.findViewById(R.id.courseStartDateTextView);
+            termEnd = itemView.findViewById(R.id.courseEndDateTextView);
             itemView.setOnClickListener( v -> {
                  int position = getAdapterPosition();
                  final TermEntity current = terms.get(position);

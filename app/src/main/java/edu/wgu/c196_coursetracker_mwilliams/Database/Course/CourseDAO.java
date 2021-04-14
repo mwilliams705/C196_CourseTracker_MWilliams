@@ -14,8 +14,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Dao
 public interface CourseDAO {
-//    @Insert (onConflict = OnConflictStrategy.REPLACE)
-    @Update
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     void insertCourse(CourseEntity courseEntity);
 
     @Query("DELETE FROM courses")
@@ -32,4 +31,7 @@ public interface CourseDAO {
 
     @Query("SELECT COUNT(*) FROM COURSES")
     int getCourseCount();
+
+    @Query("SELECT * from courses where term_id= :term_id")
+    LiveData<List<CourseEntity>> getCoursesByTermId(int term_id);
 }

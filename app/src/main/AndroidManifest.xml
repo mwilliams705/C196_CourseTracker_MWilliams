@@ -9,18 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_CourseTracker_MWilliams">
-        <activity android:name=".UI.CourseDetailActivity" />
-        <activity android:name=".UI.CourseActivity" />
-        <activity android:name=".UI.TermDetailActivity" />
-
-
-        <activity android:name=".UI.TermActivity">
+        <activity android:name=".UI.AssessmentActivities.AssessmentActivity" />
+        <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.CourseActivities.CourseAddEditActivity" />
+        <activity android:name=".UI.TermActivities.TermAddEditActivity" />
+        <activity android:name=".UI.CourseActivities.CourseDetailActivity" />
+        <activity android:name=".UI.CourseActivities.CourseActivity" />
+        <activity android:name=".UI.TermActivities.TermDetailActivity" />
+        <activity android:name=".UI.TermActivities.TermActivity" />
     </application>
 
 </manifest>

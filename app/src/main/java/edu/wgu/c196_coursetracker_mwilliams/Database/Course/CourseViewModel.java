@@ -22,7 +22,15 @@ public class CourseViewModel extends AndroidViewModel {
 
     public LiveData<List<CourseEntity>> getAllCourses(){return allCourses;}
 
+    public LiveData<List<CourseEntity>> getCoursesByTermId(int term_id){
+        return repository.getAllCoursesByTermId(term_id);
+
+    }
+
     public void insertCourse(CourseEntity courseEntity){repository.insertCourse(courseEntity);}
 
     public int courseCount(){return repository.getCourseCount();}
+
+
+
 }
