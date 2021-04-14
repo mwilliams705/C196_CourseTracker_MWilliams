@@ -1,10 +1,8 @@
-package edu.wgu.c196_coursetracker_mwilliams.Entity;
+package edu.wgu.c196_coursetracker_mwilliams.Database.Term;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.sql.Timestamp;
 
 @Entity(tableName = "terms")
 public class TermEntity {

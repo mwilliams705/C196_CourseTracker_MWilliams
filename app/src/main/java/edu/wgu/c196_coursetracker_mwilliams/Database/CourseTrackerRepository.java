@@ -2,18 +2,20 @@ package edu.wgu.c196_coursetracker_mwilliams.Database;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.DAO.AssessmentDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.CourseDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.InstructorDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.NoteDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.TermDAO;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.AssessmentEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.CourseEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.InstructorEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.NoteEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
 public class CourseTrackerRepository {
     private TermDAO termDAO;

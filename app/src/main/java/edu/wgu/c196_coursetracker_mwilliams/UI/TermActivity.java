@@ -13,19 +13,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerRepository;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.TermAdapter;
 
 public class TermActivity extends AppCompatActivity {
-
     List<TermEntity> terms;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         CourseTrackerRepository courseTrackerRepository = new CourseTrackerRepository(getApplication());
+
         terms = courseTrackerRepository.getAllTerms();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);

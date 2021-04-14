@@ -1,10 +1,12 @@
-package edu.wgu.c196_coursetracker_mwilliams.Entity;
+package edu.wgu.c196_coursetracker_mwilliams.Database.Instructor;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Entity(tableName = "instructors",
         indices = {@Index(value = "instructor_id",unique = true),@Index(value = "course_id",unique = true)},

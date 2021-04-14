@@ -8,20 +8,19 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import java.sql.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import edu.wgu.c196_coursetracker_mwilliams.DAO.AssessmentDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.CourseDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.InstructorDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.NoteDAO;
-import edu.wgu.c196_coursetracker_mwilliams.DAO.TermDAO;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.AssessmentEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.CourseEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.InstructorEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.NoteEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermDAO;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
 @Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class, NoteEntity.class},version = 1, exportSchema = false)
 public abstract class CourseTrackerDatabase extends RoomDatabase{
@@ -38,7 +37,7 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
 
     private static volatile CourseTrackerDatabase INSTANCE;
 
-    static CourseTrackerDatabase getDatabase(final Context context){
+    public static CourseTrackerDatabase getDatabase(final Context context){
         if (INSTANCE==null){
             synchronized (CourseTrackerDatabase.class){
                 if (INSTANCE == null){
@@ -59,13 +58,25 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
             dataWriteExecutor.execute(()->{
 
                 TermDAO termDAO = INSTANCE.termDAO();
-
-                TermEntity termEntity = new TermEntity(
-                        "Android Dev",
-                        "07/01/2021",
-                        "01/31/2022");
                 termDAO.deleteAllTerms();
-                termDAO.insert(termEntity);
+                for (int i = 0; i < 4; i++) {
+                    TermEntity termEntitySpring = new TermEntity(
+                            "Spring 202"+i,
+                            "01/05/202"+i,
+                            "01/31/202"+i);
+                    TermEntity termEntityFall = new TermEntity(
+                            "Fall 202"+i,
+                            "08/01/202"+i,
+                            "12/20/202"+i);
+
+                    termDAO.insert(termEntitySpring);
+                    termDAO.insert(termEntityFall);
+
+                }
+
+
+
+
 
             });
 

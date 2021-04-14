@@ -1,10 +1,12 @@
-package edu.wgu.c196_coursetracker_mwilliams.Entity;
+package edu.wgu.c196_coursetracker_mwilliams.Database.Assessment;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 
 @Entity(tableName = "assessments",

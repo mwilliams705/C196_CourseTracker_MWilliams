@@ -1,10 +1,12 @@
-package edu.wgu.c196_coursetracker_mwilliams.Entity;
+package edu.wgu.c196_coursetracker_mwilliams.Database.Note;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
 
 @Entity(tableName = "notes",
         indices = {@Index(value = "note_id",unique = true),@Index(value = "assessment_id",unique = true)},

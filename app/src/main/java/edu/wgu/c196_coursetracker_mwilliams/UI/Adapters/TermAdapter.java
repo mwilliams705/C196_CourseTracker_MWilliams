@@ -10,14 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Entity.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermDetailActivity;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {

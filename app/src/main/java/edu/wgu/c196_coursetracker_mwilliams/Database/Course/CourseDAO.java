@@ -1,4 +1,4 @@
-package edu.wgu.c196_coursetracker_mwilliams.DAO;
+package edu.wgu.c196_coursetracker_mwilliams.Database.Course;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Entity.CourseEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Dao
 public interface CourseDAO {
