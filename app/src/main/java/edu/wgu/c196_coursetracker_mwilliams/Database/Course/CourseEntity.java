@@ -20,9 +20,9 @@ public class CourseEntity {
     @ColumnInfo(name = "title")
     private String course_title;
     @ColumnInfo(name = "start")
-    private Long course_start;
+    private String course_start;
     @ColumnInfo(name = "end")
-    private Long course_end;
+    private String course_end;
     @ColumnInfo(name = "status")
     private String course_status;
     @ColumnInfo(name = "note")
@@ -31,8 +31,7 @@ public class CourseEntity {
     private int term_id;
 
 
-    public CourseEntity(int course_id, String course_title, Long course_start, Long course_end, String course_status, String course_note, int term_id) {
-        this.course_id = course_id;
+    public CourseEntity( String course_title, String course_start, String course_end, String course_status, String course_note, int term_id) {
         this.course_title = course_title;
         this.course_start = course_start;
         this.course_end = course_end;
@@ -57,19 +56,19 @@ public class CourseEntity {
         this.course_title = course_title;
     }
 
-    public Long getCourse_start() {
+    public String getCourse_start() {
         return course_start;
     }
 
-    public void setCourse_start(Long course_start) {
+    public void setCourse_start(String course_start) {
         this.course_start = course_start;
     }
 
-    public Long getCourse_end() {
+    public String getCourse_end() {
         return course_end;
     }
 
-    public void setCourse_end(Long course_end) {
+    public void setCourse_end(String course_end) {
         this.course_end = course_end;
     }
 

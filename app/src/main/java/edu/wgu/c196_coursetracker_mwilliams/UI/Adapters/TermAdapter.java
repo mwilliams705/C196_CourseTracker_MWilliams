@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
@@ -21,7 +23,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
     private final LayoutInflater inflater;
     private final Context context;
-    private List<TermEntity> terms;
+    private List<TermEntity> terms = new ArrayList<>();
 
     public TermAdapter(Context context) {
         inflater = LayoutInflater.from(context);
@@ -64,9 +66,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
 
 
-
-
-
     class TermViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView termTitle;
@@ -94,7 +93,4 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         }
     }
 
-    public Context getContext() {
-        return context;
-    }
 }

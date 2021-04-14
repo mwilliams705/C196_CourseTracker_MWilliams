@@ -1,6 +1,9 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,20 +15,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermRepository;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.TermAdapter;
 
 public class TermActivity extends AppCompatActivity {
-    List<TermEntity> terms;
+    TermViewModel termViewModel;
+    LiveData<List<TermEntity>> terms;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        CourseTrackerRepository courseTrackerRepository = new CourseTrackerRepository(getApplication());
+        TermRepository termRepository = new TermRepository(getApplication());
 
-        terms = courseTrackerRepository.getAllTerms();
+        terms = termRepository.getAllTerms();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
         TermAdapter termAdapter = new TermAdapter(this);
@@ -35,7 +40,10 @@ public class TermActivity extends AppCompatActivity {
 
         termRecyclerView.setAdapter(termAdapter);
         termRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(terms);
+
+        termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
+
+        termViewModel.getAllTerms().observe(this, termAdapter::setTerms);
 
         addTermFAB.setOnClickListener(this::addTerm);
 

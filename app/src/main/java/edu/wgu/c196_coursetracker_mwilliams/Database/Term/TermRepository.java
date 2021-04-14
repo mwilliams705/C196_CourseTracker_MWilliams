@@ -1,10 +1,9 @@
 package edu.wgu.c196_coursetracker_mwilliams.Database.Term;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Database;
+import androidx.lifecycle.Observer;
 
 import java.util.List;
 
@@ -20,28 +19,18 @@ public class TermRepository {
         termDAO = db.termDAO();
         allTerms = termDAO.getAllTerms();
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
-    //Insert methods
-    public void insertTerm(TermEntity term){
-        new InsertTermAsyncTask(termDAO).execute(term);
-
-    }
-
-    //Delete methods
-    public void deleteTerm(TermEntity term){
-        new DeleteTermAsyncTask(termDAO).execute(term);
-
-    }
-
-    public void deleteAllTerms(){
-        new DeleteAllTermsAsyncTask(termDAO).execute();
-
-    }
-
 
     //Get methods
     public LiveData<List<TermEntity>> getAllTerms(){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            allTerms=termDAO.getAllTerms();
+        });
         return allTerms;
     }
 
@@ -49,45 +38,46 @@ public class TermRepository {
         return termDAO.getTermByID(termID);
     }
 
-    private static class InsertTermAsyncTask extends AsyncTask<TermEntity, Void, Void>{
-        private TermDAO termDAO;
+    //Insert methods
+    public void insertTerm(TermEntity termEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(() -> {
+            termDAO.insertTerm(termEntity);
+        });
 
-        private InsertTermAsyncTask(TermDAO termDAO){
-            this.termDAO = termDAO;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        @Override
-        protected Void doInBackground(TermEntity... termEntities) {
-            termDAO.insertTerm(termEntities[0]);
-            return null;
+    }
+
+    //Delete methods
+    public void deleteTerm(TermEntity termEntity) {
+        CourseTrackerDatabase.dataWriteExecutor.execute(() -> {
+            termDAO.deleteTerm(termEntity);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    private static class DeleteTermAsyncTask extends AsyncTask<TermEntity, Void, Void>{
-        private TermDAO termDAO;
-
-        private DeleteTermAsyncTask(TermDAO termDAO){
-            this.termDAO = termDAO;
-        }
-
-        @Override
-        protected Void doInBackground(TermEntity... termEntities) {
-            termDAO.deleteTerm(termEntities[0]);
-            return null;
-        }
-    }
-
-    private static class DeleteAllTermsAsyncTask extends AsyncTask<Void, Void, Void> {
-        private TermDAO termDAO;
-
-        private DeleteAllTermsAsyncTask(TermDAO termDAO){
-            this.termDAO = termDAO;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
+    public void deleteAllTerms(){
+        CourseTrackerDatabase.dataWriteExecutor.execute(() -> {
             termDAO.deleteAllTerms();
-            return null;
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+}
+
+    public int getTermCount() {
+        return termDAO.getTermCount();
     }
 }

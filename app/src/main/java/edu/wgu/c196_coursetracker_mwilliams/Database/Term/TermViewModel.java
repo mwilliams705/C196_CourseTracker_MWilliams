@@ -4,26 +4,28 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerRepository;
-
 
 public class TermViewModel extends AndroidViewModel {
-    private CourseTrackerRepository repository;
-    private final List<TermEntity> allTerms;
+    private final TermRepository repository;
+    private final LiveData<List<TermEntity>> allTerms;
 
     public TermViewModel(@NonNull Application application) {
         super(application);
-        repository = new CourseTrackerRepository(application);
+        repository = new TermRepository(application);
         allTerms = repository.getAllTerms();
     }
 
-    List<TermEntity> getAllTerms() {
+    public LiveData<List<TermEntity>> getAllTerms() {
         return allTerms;
     }
 
-    public void insert(TermEntity termEntity){repository.insert(termEntity);}
+    public void insertTerm(TermEntity termEntity){repository.insertTerm(termEntity);}
 
+    public int termCount(){
+        return repository.getTermCount();
+    }
 }

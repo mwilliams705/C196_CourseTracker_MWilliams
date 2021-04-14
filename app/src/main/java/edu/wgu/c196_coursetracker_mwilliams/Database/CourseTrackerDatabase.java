@@ -32,7 +32,7 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
     public abstract NoteDAO noteDAO();
     public static final int NUM_OF_THREADS = 4;
 
-    static final ExecutorService dataWriteExecutor =
+    public static final ExecutorService dataWriteExecutor =
             Executors.newFixedThreadPool(NUM_OF_THREADS);
 
     private static volatile CourseTrackerDatabase INSTANCE;
@@ -58,19 +58,44 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
             dataWriteExecutor.execute(()->{
 
                 TermDAO termDAO = INSTANCE.termDAO();
+                CourseDAO courseDAO = INSTANCE.courseDAO();
                 termDAO.deleteAllTerms();
-                for (int i = 0; i < 4; i++) {
+                for (int i = 1; i < 5; i++) {
                     TermEntity termEntitySpring = new TermEntity(
                             "Spring 202"+i,
                             "01/05/202"+i,
                             "01/31/202"+i);
+                    termDAO.insertTerm(termEntitySpring);
+
+                    CourseEntity courseEntity = new CourseEntity(
+                            "Potato 101",
+                            "00/00/00",
+                            "00/00/00",
+                            "Pending",
+                            "adsfasdfasdfasdfasdfasd",
+                            termEntitySpring.getTerm_id()
+                    );
+                    courseDAO.insertCourse(courseEntity);
+
                     TermEntity termEntityFall = new TermEntity(
                             "Fall 202"+i,
                             "08/01/202"+i,
                             "12/20/202"+i);
 
-                    termDAO.insert(termEntitySpring);
-                    termDAO.insert(termEntityFall);
+
+                    termDAO.insertTerm(termEntityFall);
+
+
+                    CourseEntity courseEntityFall = new CourseEntity(
+                            "Potato 101",
+                            "00/00/00",
+                            "00/00/00",
+                            "Pending",
+                            "adsfasdfasdfasdfasdfasd",
+                            termEntityFall.getTerm_id()
+                    );
+                    courseDAO.insertCourse(courseEntityFall);
+
 
                 }
 
