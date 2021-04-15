@@ -28,4 +28,6 @@ public class TermViewModel extends AndroidViewModel {
     public int termCount(){
         return repository.getTermCount();
     }
+
+    public TermEntity getTermById(int termId){return repository.getTermByID(termId);}
 }

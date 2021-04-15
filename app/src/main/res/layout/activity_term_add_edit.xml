@@ -6,4 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".UI.TermAddEditActivity">
 
+    <TextView
+        android:id="@+id/termNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Term Name:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/termNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termNameLabel" />
+
+    <TextView
+        android:id="@+id/termStartDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Term Start:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/termNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/termNameEditText" />
+
+    <EditText
+        android:id="@+id/startEditTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termStartDateLabel" />
+
+    <TextView
+        android:id="@+id/termEndDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Term End:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/termStartDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/startEditTextDate" />
+
+    <EditText
+        android:id="@+id/endEditTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termEndDateLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

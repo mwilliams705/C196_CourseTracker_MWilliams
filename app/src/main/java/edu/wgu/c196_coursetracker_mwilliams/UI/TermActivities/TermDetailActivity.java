@@ -74,7 +74,8 @@ public class TermDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(TermDetailActivity.this, MainActivity.class);
+        Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
+
         startActivity(intent);
 
 
