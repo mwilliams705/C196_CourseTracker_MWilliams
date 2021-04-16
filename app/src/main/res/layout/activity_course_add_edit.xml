@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBG"
+    android:background="@color/almostWhite"
     tools:context=".UI.CourseActivities.CourseAddEditActivity">
 
     <TextView
@@ -12,9 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="32dp"
         android:text="@string/course_name"
-        android:textColor="@color/almostWhite"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Course Start"
-        android:textColor="@color/almostWhite"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/courseNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/courseNameEditText" />
 
@@ -59,7 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Course End"
-        android:textColor="@color/almostWhite"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/courseStartDateLabel"
         app:layout_constraintTop_toBottomOf="@+id/courseStartDateEditText" />
 
@@ -80,6 +83,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:dropDownWidth="250dp"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseInstructorSpinnerLabel" />
@@ -90,6 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Instructor:"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/courseEndDateLabel"
         app:layout_constraintTop_toBottomOf="@+id/courseEndDateEditText" />
 
@@ -98,7 +105,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="Term:"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/courseInstructorSpinnerLabel"
         app:layout_constraintTop_toBottomOf="@+id/courseInstructorSpinner" />
 
@@ -107,8 +116,21 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:dropDownWidth="250dp"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseTermSpinnerLabel" />
+
+    <Button
+        android:id="@+id/courseSaveBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseTermSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
