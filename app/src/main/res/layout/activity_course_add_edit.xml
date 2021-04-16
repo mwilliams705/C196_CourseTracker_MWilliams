@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="128dp"
         android:text="@string/course_name"
         android:textColor="@color/almostWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseAddEditToolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/courseNameEditText"
@@ -75,15 +75,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseEndDateLabel" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/courseAddEditToolbar"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/courseInstructorSpinner"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/courseInstructorSpinnerLabel" />
+
+    <TextView
+        android:id="@+id/courseInstructorSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Instructor:"
+        app:layout_constraintStart_toStartOf="@+id/courseEndDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseEndDateEditText" />
+
+    <TextView
+        android:id="@+id/courseTermSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/courseInstructorSpinnerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseInstructorSpinner" />
+
+    <Spinner
+        android:id="@+id/courseTermSpinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseTermSpinnerLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,14 +73,23 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
                             "08/01/202"+i,
                             "12/20/202"+i);
 
-
                     termDAO.insertTerm(termEntityFall);
+
+
+
 
                 }
 
 
-
-
+                InstructorDAO instructorDAO = INSTANCE.instructorDAO();
+                for (int j = 0; j < 9; j++) {
+                    InstructorEntity instructorEntity = new InstructorEntity(
+                            "Instructor "+j,
+                            "777-777-777"+j,
+                            "instructor"+j+"@egu.edu"
+                    );
+                    instructorDAO.insert(instructorEntity);
+                }
 
             });
 

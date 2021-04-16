@@ -2,7 +2,6 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,12 +17,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Objects;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.CourseAdapter;
-import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseAddEditActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 
 public class TermDetailActivity extends AppCompatActivity {
+    TermViewModel termViewModel;
     CourseViewModel courseViewModel;
 
     private int termId;
@@ -36,16 +36,19 @@ public class TermDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_detail);
 
         Intent intent = getIntent();
-        termId = intent.getIntExtra("termID",0);
+        setTermId(intent.getIntExtra("termID",0));
+        termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
+        TermEntity termEntity = termViewModel.getTermById(termId);
+
         RecyclerView courseRecycler = findViewById(R.id.termCourseRecyclerView);
         CourseAdapter courseAdapter = new CourseAdapter(this);
-        FloatingActionButton addCourseFab = findViewById(R.id.addCourseFAB);
+        FloatingActionButton addCourseFab = findViewById(R.id.editTermFAB);
 
 
         TextView termStartTextView = findViewById(R.id.termStartTextView);
         TextView termEndTextView = findViewById(R.id.termEndTextView);
-        termStartTextView.setText(intent.getStringExtra("termStart"));
-        termEndTextView.setText(intent.getStringExtra("termEnd"));
+        termStartTextView.setText(termEntity.getTerm_start());
+        termEndTextView.setText(termEntity.getTerm_end());
 
         courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
         courseViewModel.getCoursesByTermId(termId).observe(this, courseAdapter::setCourses);
@@ -56,7 +59,7 @@ public class TermDetailActivity extends AppCompatActivity {
 
         addCourseFab.setOnClickListener(this::editTerm);
 
-        setTitle(intent.getStringExtra("termTitle"));
+        setTitle(termEntity.getTerm_title());
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -67,7 +70,6 @@ public class TermDetailActivity extends AppCompatActivity {
 
     public void editTerm(View view){
         Intent intent = new Intent(TermDetailActivity.this, TermAddEditActivity.class);
-        intent.putExtra("header","Edit Term");
         intent.putExtra("term_id",termId);
         startActivity(intent);
     }
@@ -82,4 +84,7 @@ public class TermDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setTermId(int termId) {
+        this.termId = termId;
+    }
 }

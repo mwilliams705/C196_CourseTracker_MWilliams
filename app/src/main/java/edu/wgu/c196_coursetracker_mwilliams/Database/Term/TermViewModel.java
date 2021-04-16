@@ -30,4 +30,8 @@ public class TermViewModel extends AndroidViewModel {
     }
 
     public TermEntity getTermById(int termId){return repository.getTermByID(termId);}
+
+    public void updateTerm(TermEntity termEntity){
+        repository.updateTerm(termEntity);
+    }
 }

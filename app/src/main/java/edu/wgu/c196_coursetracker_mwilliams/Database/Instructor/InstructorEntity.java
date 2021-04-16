@@ -9,8 +9,7 @@ import androidx.room.PrimaryKey;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Entity(tableName = "instructors",
-        indices = {@Index(value = "instructor_id",unique = true),@Index(value = "course_id",unique = true)},
-        foreignKeys = @ForeignKey(entity = CourseEntity.class,parentColumns = "course_id",childColumns = "course_id",onDelete = ForeignKey.CASCADE))
+        indices = {@Index(value = "instructor_id",unique = true)})
 public class InstructorEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "instructor_id")
@@ -21,14 +20,11 @@ public class InstructorEntity {
     private String instructor_phone;
     @ColumnInfo(name = "email")
     private String instructor_email;
-    @ColumnInfo(name = "course_id")
-    private int course_id;
 
-    public InstructorEntity(String instructor_name, String instructor_phone, String instructor_email, int course_id) {
+    public InstructorEntity(String instructor_name, String instructor_phone, String instructor_email) {
         this.instructor_name = instructor_name;
         this.instructor_phone = instructor_phone;
         this.instructor_email = instructor_email;
-        this.course_id = course_id;
     }
 
     public int getId() {
@@ -63,11 +59,4 @@ public class InstructorEntity {
         this.instructor_email = instructor_email;
     }
 
-    public int getCourse_id() {
-        return course_id;
-    }
-
-    public void setCourse_id(int course_id) {
-        this.course_id = course_id;
-    }
 }

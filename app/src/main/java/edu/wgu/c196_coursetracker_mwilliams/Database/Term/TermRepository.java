@@ -12,6 +12,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerDatabase;
 public class TermRepository {
     private TermDAO termDAO;
     private LiveData<List<TermEntity>> allTerms;
+    private TermEntity term;
 
 
     public TermRepository(Application application){
@@ -35,7 +36,17 @@ public class TermRepository {
     }
 
     public TermEntity getTermByID(int termID){
-        return termDAO.getTermByID(termID);
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            term=termDAO.getTermByID(termID);
+        });
+
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return term;
     }
 
     //Insert methods
@@ -50,6 +61,19 @@ public class TermRepository {
             e.printStackTrace();
         }
 
+    }
+
+    //Update method
+    public void updateTerm(TermEntity termEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            termDAO.updateTerm(termEntity);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //Delete methods

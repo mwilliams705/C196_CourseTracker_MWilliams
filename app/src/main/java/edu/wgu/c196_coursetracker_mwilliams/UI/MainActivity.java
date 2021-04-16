@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import java.util.Objects;
 
+import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentRepository;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseRepository;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermRepository;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
@@ -26,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Welcome");
 
-
+        CourseRepository courseRepository = new CourseRepository(getApplication());
+        TermRepository termRepository= new TermRepository(getApplication());
+        AssessmentRepository assessmentRepository = new AssessmentRepository();
 
 
         Button termBtn = findViewById(R.id.termBtn);

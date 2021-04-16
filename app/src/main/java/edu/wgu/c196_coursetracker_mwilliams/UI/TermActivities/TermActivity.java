@@ -2,7 +2,6 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,8 +37,8 @@ public class TermActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
         TermAdapter termAdapter = new TermAdapter(this);
-        RecyclerView termRecyclerView = findViewById(R.id.termRecyclerView);
-        FloatingActionButton addTermFAB = findViewById(R.id.addTermFAB);
+        RecyclerView termRecyclerView = findViewById(R.id.courseRecyclerView);
+        FloatingActionButton addTermFAB = findViewById(R.id.addCourseFAB);
 
         setTitle("Terms");
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
@@ -59,7 +58,7 @@ public class TermActivity extends AppCompatActivity {
 
 
     public void addTerm(View view){
-        Intent intent = new Intent(TermActivity.this,TermDetailActivity.class);
+        Intent intent = new Intent(TermActivity.this,TermAddEditActivity.class);
         startActivity(intent);
     }
 
