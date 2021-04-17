@@ -14,22 +14,19 @@ import java.util.concurrent.Executors;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentDAO;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseDAO;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorDAO;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteDAO;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermDAO;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Note.NoteEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
-@Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class, NoteEntity.class},version = 1, exportSchema = false)
+@Database(entities = {TermEntity.class, InstructorEntity.class, CourseEntity.class, AssessmentEntity.class},version = 1, exportSchema = false)
 public abstract class CourseTrackerDatabase extends RoomDatabase{
 
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract InstructorDAO instructorDAO();
-    public abstract NoteDAO noteDAO();
     public static final int NUM_OF_THREADS = 4;
 
     public static final ExecutorService dataWriteExecutor =

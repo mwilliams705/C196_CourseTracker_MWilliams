@@ -1,12 +1,11 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,21 +27,18 @@ import java.util.Objects;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermAddEditActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
 
 public class CourseAddEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     TermViewModel termViewModel;
     InstructorViewModel instructorViewModel;
     CourseViewModel courseViewModel;
+
     public Integer courseID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +61,6 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
         Spinner courseTermSpinner = findViewById(R.id.courseTermSpinner);
         List<TermEntity> terms = new ArrayList<>();
 
-        TermViewModel termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
-
-
-
         ArrayAdapter<TermEntity> termSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, terms);
 
         termSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -77,7 +68,6 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
         termViewModel.getAllTerms().observe(this, termSpinnerAdapter::addAll);
 
         termSpinnerAdapter.notifyDataSetChanged();
-
 
 
         courseTermSpinner.setAdapter(termSpinnerAdapter);
@@ -90,8 +80,6 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
         Spinner courseInstructorSpinner = findViewById(R.id.courseInstructorSpinner);
         List<InstructorEntity> instructors = new ArrayList<>();
-
-        InstructorViewModel instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
 
 
 
@@ -147,24 +135,28 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
 
-        TermEntity termEntity = (TermEntity) courseTermSpinner.getSelectedItem();
-        InstructorEntity instructorEntity = (InstructorEntity) courseInstructorSpinner.getSelectedItem();
-        String status = courseStatusSpinner.getSelectedItem().toString();
-        courseSaveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CourseEntity courseEntity = new CourseEntity(
-                  courseNameEditText.getText().toString(),
-                  courseStartDateEditText.getText().toString(),
-                  courseEndDateEditText.getText().toString(),
-                  status,
-                  courseNoteMultiLine.getText().toString(),
-                  termEntity.getTerm_id(),
-                        instructorEntity.getId()
-                );
 
-                courseViewModel.insertCourse(courseEntity);
-            }
+        String status = courseStatusSpinner.getSelectedItem().toString();
+
+        courseSaveBtn.setOnClickListener(v -> {
+
+            int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
+            int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
+
+
+            CourseEntity courseEntity = new CourseEntity(
+              courseNameEditText.getText().toString(),
+              courseStartDateEditText.getText().toString(),
+              courseEndDateEditText.getText().toString(),
+              status,
+              courseNoteMultiLine.getText().toString(),
+              termID,
+            instructorID
+            );
+            courseViewModel.insertCourse(courseEntity);
+            Intent saveIntent = new Intent(CourseAddEditActivity.this,CourseActivity.class);
+            Toast.makeText(this,"Course "+courseEntity.getCourse_title()+" saved!",Toast.LENGTH_SHORT).show();
+            startActivity(saveIntent);
         });
 
 
@@ -209,4 +201,12 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }
