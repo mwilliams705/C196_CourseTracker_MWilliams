@@ -57,11 +57,6 @@ public class TermEntity {
 
     @Override
     public String toString() {
-        return "TermEntity{" +
-                "term_id=" + term_id +
-                ", term_title='" + term_title + '\'' +
-                ", term_start=" + term_start +
-                ", term_end=" + term_end +
-                '}';
+        return term_title;
     }
 }

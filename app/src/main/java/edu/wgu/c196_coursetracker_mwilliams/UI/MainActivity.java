@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseRepository;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermRepository;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentActivity;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         CourseRepository courseRepository = new CourseRepository(getApplication());
         TermRepository termRepository= new TermRepository(getApplication());
         AssessmentRepository assessmentRepository = new AssessmentRepository();
+        InstructorRepository instructorRepository = new InstructorRepository(getApplication());
+
 
 
         Button termBtn = findViewById(R.id.termBtn);

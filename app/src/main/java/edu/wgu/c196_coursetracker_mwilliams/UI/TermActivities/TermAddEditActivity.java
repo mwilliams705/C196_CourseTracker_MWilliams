@@ -25,7 +25,7 @@ public class TermAddEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_add_edit);
         Intent intent = getIntent();
-//        TODO: Start here tomorrow!!!!!!!
+
         EditText termNameEditText = findViewById(R.id.termNameEditText);
         EditText startEditTextDate = findViewById(R.id.startEditTextDate);
         EditText endEditTextDate = findViewById(R.id.endEditTextDate);
@@ -92,7 +92,6 @@ public class TermAddEditActivity extends AppCompatActivity {
         }else {
             intent = new Intent(TermAddEditActivity.this, TermDetailActivity.class);
             intent.putExtra("termID",termID);
-            System.out.println(termID);
         }
         startActivity(intent);
 

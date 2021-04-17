@@ -68,6 +68,7 @@ public class CourseActivity extends AppCompatActivity {
 
     public void addCourse(View view){
         Intent intent = new Intent(CourseActivity.this,CourseAddEditActivity.class);
+
         startActivity(intent);
     }
 }

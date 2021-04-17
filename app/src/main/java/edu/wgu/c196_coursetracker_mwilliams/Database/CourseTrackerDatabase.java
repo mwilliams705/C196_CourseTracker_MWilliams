@@ -82,6 +82,7 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
 
 
                 InstructorDAO instructorDAO = INSTANCE.instructorDAO();
+                instructorDAO.deleteAllInstructors();
                 for (int j = 0; j < 9; j++) {
                     InstructorEntity instructorEntity = new InstructorEntity(
                             "Instructor "+j,

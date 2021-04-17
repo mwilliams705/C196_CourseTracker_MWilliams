@@ -59,4 +59,8 @@ public class InstructorEntity {
         this.instructor_email = instructor_email;
     }
 
+    @Override
+    public String toString() {
+        return instructor_name;
+    }
 }

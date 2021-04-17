@@ -4,86 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/almostWhite"
+    android:background="@color/white"
     tools:context=".UI.CourseActivities.CourseAddEditActivity">
 
-    <TextView
-        android:id="@+id/courseNameTextView"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/courseNameEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/course_name"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
         android:textColor="@color/darkBG"
-        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/courseNameEditText"
-        android:layout_width="wrap_content"
+        android:id="@+id/courseStartDateEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textColor="@color/almostWhite"
+        android:hint="Start Date"
+        android:inputType="date"
+        android:textColor="@color/darkBG"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseNameTextView" />
-
-    <TextView
-        android:id="@+id/courseStartDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Course Start"
-        android:textColor="@color/darkBG"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/courseNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/courseNameEditText" />
 
     <EditText
-        android:id="@+id/courseStartDateEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="date"
-        android:textColor="@color/almostWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseStartDateLabel" />
-
-    <TextView
-        android:id="@+id/courseEndDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Course End"
-        android:textColor="@color/darkBG"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/courseStartDateLabel"
-        app:layout_constraintTop_toBottomOf="@+id/courseStartDateEditText" />
-
-    <EditText
         android:id="@+id/courseEndDateEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="End Date"
         android:inputType="date"
-        android:textColor="@color/almostWhite"
+        android:textColor="@color/darkBG"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseEndDateLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/courseStartDateEditText" />
 
     <Spinner
         android:id="@+id/courseInstructorSpinner"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:dropDownWidth="250dp"
+        android:minHeight="20dp"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,18 +61,19 @@
         android:id="@+id/courseInstructorSpinnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Instructor:"
         android:textColor="@color/darkBG"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/courseEndDateLabel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseEndDateEditText" />
 
     <TextView
         android:id="@+id/courseTermSpinnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Term:"
         android:textColor="@color/darkBG"
         android:textSize="18sp"
@@ -113,9 +82,8 @@
 
     <Spinner
         android:id="@+id/courseTermSpinner"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:dropDownWidth="250dp"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,11 +94,46 @@
         android:id="@+id/courseSaveBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="175dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseStatusSpinner" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Status:"
+        android:textColor="@color/darkBG"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/courseTermSpinnerLabel"
         app:layout_constraintTop_toBottomOf="@+id/courseTermSpinner" />
+
+    <Spinner
+        android:id="@+id/courseStatusSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/courseNoteMultiLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Note"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/courseSaveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseStatusSpinner"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,10 @@ public class CourseViewModel extends AndroidViewModel {
 
     public int courseCount(){return repository.getCourseCount();}
 
+    public CourseEntity getCourseById(int course_id){
+        return repository.getCourseByID(course_id);
+    }
+
 
 
 }

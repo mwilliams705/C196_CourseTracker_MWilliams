@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
 @Entity(tableName = "courses",
-        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id",unique = true)},
+        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id",unique = true),@Index(value = "instructor_id",unique = true)},
         foreignKeys = {@ForeignKey(entity = TermEntity.class,
         parentColumns = "term_id",childColumns = "term_id",onDelete = ForeignKey.CASCADE)})
 public class CourseEntity {
@@ -29,15 +29,18 @@ public class CourseEntity {
     private String course_note;
     @ColumnInfo(name = "term_id")
     private int term_id;
+    @ColumnInfo(name = "instructor_id")
+    private int instructor_id;
 
 
-    public CourseEntity( String course_title, String course_start, String course_end, String course_status, String course_note, int term_id) {
+    public CourseEntity(String course_title, String course_start, String course_end, String course_status, String course_note, int term_id, int instructor_id) {
         this.course_title = course_title;
         this.course_start = course_start;
         this.course_end = course_end;
         this.course_status = course_status;
         this.course_note = course_note;
         this.term_id = term_id;
+        this.instructor_id = instructor_id;
     }
 
     public int getCourse_id() {
@@ -94,6 +97,14 @@ public class CourseEntity {
 
     public void setTerm_id(int term_id) {
         this.term_id = term_id;
+    }
+
+    public int getInstructor_id() {
+        return instructor_id;
+    }
+
+    public void setInstructor_id(int instructor_id) {
+        this.instructor_id = instructor_id;
     }
 
     @Override
