@@ -12,6 +12,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 public class CourseRepository {
     private CourseDAO courseDAO;
     private LiveData<List<CourseEntity>> allCourses;
+    private CourseEntity courseEntity;
 
     public CourseRepository(Application application) {
         CourseTrackerDatabase db = CourseTrackerDatabase.getDatabase(application);
@@ -33,6 +34,12 @@ public class CourseRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allCourses=courseDAO.getCoursesByTermId(term_id);
         });
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return allCourses;
     }
 
@@ -40,11 +47,28 @@ public class CourseRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allCourses=courseDAO.getAllCourses();
         });
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return allCourses;
     }
 
-    public CourseEntity getCourseByID(int CourseID){
-        return courseDAO.getCourseByID(CourseID);
+    public CourseEntity getCourseByID(int courseID){
+
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            courseEntity = courseDAO.getCourseByID(courseID);
+        });
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return courseEntity;
+
     }
 
     //Insert methods
@@ -59,6 +83,13 @@ public class CourseRepository {
             e.printStackTrace();
         }
 
+    }
+
+//    Update methods
+    public void updateCourse(CourseEntity courseEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            courseDAO.updateCourse(courseEntity);
+        });
     }
 
     //Delete methods

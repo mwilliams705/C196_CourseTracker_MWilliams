@@ -54,29 +54,6 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
             super.onOpen(db);
             dataWriteExecutor.execute(()->{
 
-                TermDAO termDAO = INSTANCE.termDAO();
-                CourseDAO courseDAO = INSTANCE.courseDAO();
-                termDAO.deleteAllTerms();
-                for (int i = 1; i < 5; i++) {
-                    TermEntity termEntitySpring = new TermEntity(
-                            "Spring 202"+i,
-                            "01/05/202"+i,
-                            "01/31/202"+i);
-                    termDAO.insertTerm(termEntitySpring);
-
-
-                    TermEntity termEntityFall = new TermEntity(
-                            "Fall 202"+i,
-                            "08/01/202"+i,
-                            "12/20/202"+i);
-
-                    termDAO.insertTerm(termEntityFall);
-
-
-
-
-                }
-
 
                 InstructorDAO instructorDAO = INSTANCE.instructorDAO();
                 instructorDAO.deleteAllInstructors();
@@ -84,7 +61,7 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
                     InstructorEntity instructorEntity = new InstructorEntity(
                             "Instructor "+j,
                             "777-777-777"+j,
-                            "instructor"+j+"@egu.edu"
+                            "instructor"+j+"@wgu.edu"
                     );
                     instructorDAO.insert(instructorEntity);
                 }

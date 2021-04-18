@@ -32,6 +32,7 @@ public class CourseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         CourseRepository courseRepository = new CourseRepository(getApplication());
 
         courses = courseRepository.getAllCourses();

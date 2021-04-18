@@ -27,6 +27,8 @@ public class CourseViewModel extends AndroidViewModel {
 
     }
 
+    public void updateCourse(CourseEntity courseEntity){repository.updateCourse(courseEntity);}
+
     public void insertCourse(CourseEntity courseEntity){repository.insertCourse(courseEntity);}
 
     public int courseCount(){return repository.getCourseCount();}

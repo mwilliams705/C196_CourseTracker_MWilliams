@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/StartLabel" />
 
         <TextView
-            android:id="@+id/termStartTextView"
+            android:id="@+id/courseStartTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="@+id/StartLabel" />
 
         <TextView
-            android:id="@+id/termEndTextView"
+            android:id="@+id/courseEndTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
@@ -78,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/EndLabel" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/termCourseRecyclerView"
+            android:id="@+id/courseAssessmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -91,7 +91,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editTermFAB"
+        android:id="@+id/editCourseFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

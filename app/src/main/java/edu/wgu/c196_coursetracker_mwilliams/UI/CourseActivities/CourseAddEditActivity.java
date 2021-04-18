@@ -44,7 +44,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
-        courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
+
         Intent intent = getIntent();
 
         super.onCreate(savedInstanceState);
@@ -114,50 +114,73 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 //--------------------------------------------------------------------------------------------------
 
 
+        courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner,intent.getStringExtra("course_status")));
+        String status = courseStatusSpinner.getSelectedItem().toString();
 
-        if (intent.hasExtra("course_id")){
+
+
+        if (intent.hasExtra("courseID")){
             setTitle("Edit Course");
-            setCourseID(intent.getIntExtra("course_id",0));
+            setCourseID(intent.getIntExtra("courseID",0));
+            courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
             CourseEntity courseEntity = courseViewModel.getCourseById(courseID);
 
             courseNameEditText.setText(courseEntity.getCourse_title());
             courseStartDateEditText.setText(courseEntity.getCourse_start());
             courseEndDateEditText.setText(courseEntity.getCourse_end());
-            courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner,intent.getStringExtra("course_status")));
+            courseNoteMultiLine.setText(courseEntity.getCourse_note());
+
+
+
+            courseSaveBtn.setOnClickListener(v -> {
+
+                int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
+                int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
+
+                courseEntity.setCourse_title(courseNameEditText.getText().toString());
+                courseEntity.setCourse_start(courseStartDateEditText.getText().toString());
+                courseEntity.setCourse_end(courseEndDateEditText.getText().toString());
+                courseEntity.setCourse_note(courseNoteMultiLine.getText().toString());
+                courseEntity.setInstructor_id(instructorID);
+                courseEntity.setTerm_id(termID);
+                courseEntity.setCourse_status(status);
+                courseViewModel.updateCourse(courseEntity);
+                Intent updateIntent = new Intent(CourseAddEditActivity.this,CourseDetailActivity.class);
+                updateIntent.putExtra("courseID", courseID);
+                Toast.makeText(this,"Course "+courseEntity.getCourse_title()+" saved!",Toast.LENGTH_SHORT).show();
+                startActivity(updateIntent);
+            });
 
 
         }
         else{
             setTitle("Add Course");
 
+            courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
+
+            courseSaveBtn.setOnClickListener(v -> {
+
+                int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
+                int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
+
+                CourseEntity course = new CourseEntity(
+                        courseNameEditText.getText().toString(),
+                        courseStartDateEditText.getText().toString(),
+                        courseEndDateEditText.getText().toString(),
+                        status,
+                        courseNoteMultiLine.getText().toString(),
+                        termID,
+                        instructorID
+                );
+                courseViewModel.updateCourse(course);
+                Intent updateIntent = new Intent(CourseAddEditActivity.this,CourseActivity.class);
+                startActivity(updateIntent);
+            });
+
         }
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
-
-
-        String status = courseStatusSpinner.getSelectedItem().toString();
-
-        courseSaveBtn.setOnClickListener(v -> {
-
-            int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
-            int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
-
-
-            CourseEntity courseEntity = new CourseEntity(
-              courseNameEditText.getText().toString(),
-              courseStartDateEditText.getText().toString(),
-              courseEndDateEditText.getText().toString(),
-              status,
-              courseNoteMultiLine.getText().toString(),
-              termID,
-            instructorID
-            );
-            courseViewModel.insertCourse(courseEntity);
-            Intent saveIntent = new Intent(CourseAddEditActivity.this,CourseActivity.class);
-            Toast.makeText(this,"Course "+courseEntity.getCourse_title()+" saved!",Toast.LENGTH_SHORT).show();
-            startActivity(saveIntent);
-        });
 
 
     }

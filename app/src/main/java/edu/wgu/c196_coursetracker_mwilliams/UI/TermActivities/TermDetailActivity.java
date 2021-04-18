@@ -40,13 +40,13 @@ public class TermDetailActivity extends AppCompatActivity {
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
         TermEntity termEntity = termViewModel.getTermById(termId);
 
-        RecyclerView courseRecycler = findViewById(R.id.termCourseRecyclerView);
+        RecyclerView courseRecycler = findViewById(R.id.courseAssessmentRecyclerView);
         CourseAdapter courseAdapter = new CourseAdapter(this);
-        FloatingActionButton addCourseFab = findViewById(R.id.editTermFAB);
+        FloatingActionButton addCourseFab = findViewById(R.id.editCourseFAB);
 
 
-        TextView termStartTextView = findViewById(R.id.termStartTextView);
-        TextView termEndTextView = findViewById(R.id.termEndTextView);
+        TextView termStartTextView = findViewById(R.id.courseStartTextView);
+        TextView termEndTextView = findViewById(R.id.courseEndTextView);
         termStartTextView.setText(termEntity.getTerm_start());
         termEndTextView.setText(termEntity.getTerm_end());
 

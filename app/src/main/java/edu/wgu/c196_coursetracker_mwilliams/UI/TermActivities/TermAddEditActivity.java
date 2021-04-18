@@ -49,9 +49,9 @@ public class TermAddEditActivity extends AppCompatActivity {
                 term.setTerm_start(startEditTextDate.getText().toString());
                 term.setTerm_end(endEditTextDate.getText().toString());
                 viewModel.updateTerm(term);
-                Intent intentSave = new Intent(TermAddEditActivity.this,TermDetailActivity.class);
-                intentSave.putExtra("termID", term.getTerm_id());
-                startActivity(intentSave);
+                Intent intentUpdate = new Intent(TermAddEditActivity.this,TermDetailActivity.class);
+                intentUpdate.putExtra("termID", term.getTerm_id());
+                startActivity(intentUpdate);
             });
 
         }else {
