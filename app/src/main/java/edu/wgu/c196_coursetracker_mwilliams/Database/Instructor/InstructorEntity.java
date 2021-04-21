@@ -14,11 +14,11 @@ public class InstructorEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "instructor_id")
     private int id;
-    @ColumnInfo(name = "name")
+    @ColumnInfo(name = "instructor_name")
     private String instructor_name;
-    @ColumnInfo(name = "phone")
+    @ColumnInfo(name = "instructor_phone")
     private String instructor_phone;
-    @ColumnInfo(name = "email")
+    @ColumnInfo(name = "instructor_email")
     private String instructor_email;
 
     public InstructorEntity(String instructor_name, String instructor_phone, String instructor_email) {

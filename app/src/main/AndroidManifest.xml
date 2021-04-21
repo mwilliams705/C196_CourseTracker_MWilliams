@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_CourseTracker_MWilliams">
         <activity android:name=".UI.AssessmentActivities.AssessmentAddEditActivity"></activity>
-        <activity android:name=".UI.AssessmentActivities.AssesmentDetailActivity" />
+        <activity android:name=".UI.AssessmentActivities.AssessmentDetailActivity" />
         <activity android:name=".UI.AssessmentActivities.AssessmentActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -22,26 +23,22 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.CourseAdapter;
-import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 
 public class CourseActivity extends AppCompatActivity {
 
     CourseViewModel courseViewModel;
-    LiveData<List<CourseEntity>> courses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG,"onCreate");
 
-        CourseRepository courseRepository = new CourseRepository(getApplication());
-
-        courses = courseRepository.getAllCourses();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
         CourseAdapter courseAdapter = new CourseAdapter(this);
-        RecyclerView courseRecyclerView = findViewById(R.id.courseRecyclerView);
-        FloatingActionButton addCourseFAB = findViewById(R.id.addCourseFAB);
+        RecyclerView courseRecyclerView = findViewById(R.id.assessmentRecyclerView);
+        FloatingActionButton addCourseFAB = findViewById(R.id.addAssessmentFAB);
 
         courseRecyclerView.setAdapter(courseAdapter);
         courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,4 +69,39 @@ public class CourseActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+
+//    Lifecycle Logs
+    private final String TAG = "Lifecycle";
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+
 }

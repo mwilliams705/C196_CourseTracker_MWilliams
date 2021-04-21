@@ -9,6 +9,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG,"onCreate");
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
 
@@ -172,7 +174,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
                         termID,
                         instructorID
                 );
-                courseViewModel.updateCourse(course);
+                courseViewModel.insertCourse(course);
                 Intent updateIntent = new Intent(CourseAddEditActivity.this,CourseActivity.class);
                 startActivity(updateIntent);
             });
@@ -232,4 +234,36 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
+
+    //    Lifecycle Logs
+    private final String TAG = "Lifecycle";
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
 }

@@ -21,4 +21,7 @@ public class InstructorViewModel extends AndroidViewModel {
 
 
     public LiveData<List<InstructorEntity>> getAllInstructors(){return allInstructors;}
+    public InstructorEntity getInstructorByID(int instructorID){
+        return repository.getInstructorByID(instructorID);
+    }
 }

@@ -10,6 +10,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
 @Dao
 public interface InstructorDAO {
@@ -21,6 +22,9 @@ public interface InstructorDAO {
 
     @Query("SELECT * FROM instructors")
     LiveData<List<InstructorEntity>> getAllInstructors();
+
+    @Query("SELECT * FROM instructors where instructor_id = :instructorID")
+    InstructorEntity getInstructorByID(int instructorID);
 
     @Delete
     void delete(InstructorEntity instructorEntity);

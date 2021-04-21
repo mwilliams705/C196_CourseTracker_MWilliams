@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 
 @Entity(tableName = "courses",
-        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id",unique = true),@Index(value = "instructor_id",unique = true)},
+        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id"),@Index(value = "instructor_id")},
         foreignKeys = {@ForeignKey(entity = TermEntity.class,
         parentColumns = "term_id",childColumns = "term_id",onDelete = ForeignKey.CASCADE)})
 public class CourseEntity {

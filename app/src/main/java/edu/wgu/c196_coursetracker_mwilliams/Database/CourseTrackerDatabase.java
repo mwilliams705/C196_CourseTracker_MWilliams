@@ -55,16 +55,16 @@ public abstract class CourseTrackerDatabase extends RoomDatabase{
             dataWriteExecutor.execute(()->{
 
 
-                InstructorDAO instructorDAO = INSTANCE.instructorDAO();
-                instructorDAO.deleteAllInstructors();
-                for (int j = 0; j < 9; j++) {
-                    InstructorEntity instructorEntity = new InstructorEntity(
-                            "Instructor "+j,
-                            "777-777-777"+j,
-                            "instructor"+j+"@wgu.edu"
-                    );
-                    instructorDAO.insert(instructorEntity);
-                }
+//                InstructorDAO instructorDAO = INSTANCE.instructorDAO();
+//                instructorDAO.deleteAllInstructors();
+//                for (int j = 0; j < 9; j++) {
+//                    InstructorEntity instructorEntity = new InstructorEntity(
+//                            "Instructor "+j,
+//                            "777-777-777"+j,
+//                            "instructor"+j+"@wgu.edu"
+//                    );
+//                    instructorDAO.insert(instructorEntity);
+//                }
 
             });
 

@@ -34,4 +34,6 @@ public class TermViewModel extends AndroidViewModel {
     public void updateTerm(TermEntity termEntity){
         repository.updateTerm(termEntity);
     }
+
+
 }

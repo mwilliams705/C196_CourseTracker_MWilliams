@@ -10,7 +10,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerDatabase;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 public class CourseRepository {
-    private CourseDAO courseDAO;
+    private final CourseDAO courseDAO;
     private LiveData<List<CourseEntity>> allCourses;
     private CourseEntity courseEntity;
 

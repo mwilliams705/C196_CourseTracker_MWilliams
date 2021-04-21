@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,14 +32,15 @@ public class TermActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG,"onCreate");
         TermRepository termRepository = new TermRepository(getApplication());
 
         terms = termRepository.getAllTerms();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
         TermAdapter termAdapter = new TermAdapter(this);
-        RecyclerView termRecyclerView = findViewById(R.id.courseRecyclerView);
-        FloatingActionButton addTermFAB = findViewById(R.id.addCourseFAB);
+        RecyclerView termRecyclerView = findViewById(R.id.assessmentRecyclerView);
+        FloatingActionButton addTermFAB = findViewById(R.id.addAssessmentFAB);
 
         setTitle("Terms");
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
@@ -73,4 +75,35 @@ public class TermActivity extends AppCompatActivity {
     }
 
 
+    //    Lifecycle Logs
+    private final String TAG = "Lifecycle";
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
 }

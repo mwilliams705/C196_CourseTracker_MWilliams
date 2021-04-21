@@ -11,6 +11,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerDatabase;
 public class InstructorRepository {
     private InstructorDAO instructorDAO;
     private LiveData<List<InstructorEntity>> allInstructors;
+    private InstructorEntity instructor;
 
     public InstructorRepository(Application application) {
         CourseTrackerDatabase db = CourseTrackerDatabase.getDatabase(application);
@@ -30,6 +31,27 @@ public class InstructorRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allInstructors=instructorDAO.getAllInstructors();
         });
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return allInstructors;
+    }
+
+    public InstructorEntity getInstructorByID(int instructorID){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            instructor = instructorDAO.getInstructorByID(instructorID);
+        });
+
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return instructor;
     }
 }

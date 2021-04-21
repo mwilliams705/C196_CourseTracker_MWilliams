@@ -10,7 +10,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 
 @Entity(tableName = "assessments",
-        indices = {@Index(value = "assessment_id",unique = true),@Index(value = "course_id",unique = true)},
+        indices = {@Index(value = "assessment_id",unique = true),@Index(value = "course_id")},
         foreignKeys = @ForeignKey(entity = CourseEntity.class,
                 parentColumns = "course_id",
                 childColumns = "course_id",onDelete = ForeignKey.CASCADE))

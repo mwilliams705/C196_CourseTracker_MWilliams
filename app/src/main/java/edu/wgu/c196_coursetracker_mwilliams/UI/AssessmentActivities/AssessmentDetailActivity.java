@@ -7,14 +7,14 @@ import android.util.Log;
 
 import edu.wgu.c196_coursetracker_mwilliams.R;
 
-public class AssessmentAddEditActivity extends AppCompatActivity {
+public class AssessmentDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"onCreate");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assessment_add_edit);
+        setContentView(R.layout.activity_assesment_detail);
     }
 
     //    Lifecycle Logs
