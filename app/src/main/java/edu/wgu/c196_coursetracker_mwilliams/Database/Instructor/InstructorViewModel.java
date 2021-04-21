@@ -24,4 +24,8 @@ public class InstructorViewModel extends AndroidViewModel {
     public InstructorEntity getInstructorByID(int instructorID){
         return repository.getInstructorByID(instructorID);
     }
+
+    public void insertInstructor(InstructorEntity instructorEntity){repository.insertInstructor(instructorEntity);}
+
+    public void updateInstructor(InstructorEntity instructorEntity){repository.updateInstructor(instructorEntity);}
 }

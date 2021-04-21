@@ -69,9 +69,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
         public AssessmentViewHolder(@NonNull View itemView) {
             super(itemView);
-            assessmentTitle = itemView.findViewById(R.id.assessmentTitle);
-            assessmentDate = itemView.findViewById(R.id.assessmentDateTextView);
-            assessmentType = itemView.findViewById(R.id.assessmentTypeTextView);
+            assessmentTitle = itemView.findViewById(R.id.instructorName);
+            assessmentDate = itemView.findViewById(R.id.instructorPhoneListItemTextView);
+            assessmentType = itemView.findViewById(R.id.instructorEmailListItemTextView);
             itemView.setOnClickListener(v->{
                 int position = getAdapterPosition();
                 final AssessmentEntity current = assessments.get(position);

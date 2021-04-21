@@ -74,9 +74,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
         public TermViewHolder(@NonNull View itemView) {
             super(itemView);
-            termTitle = itemView.findViewById(R.id.assessmentTitle);
-            termStart  = itemView.findViewById(R.id.assessmentDateTextView);
-            termEnd = itemView.findViewById(R.id.assessmentTypeTextView);
+            termTitle = itemView.findViewById(R.id.instructorName);
+            termStart  = itemView.findViewById(R.id.instructorPhoneListItemTextView);
+            termEnd = itemView.findViewById(R.id.instructorEmailListItemTextView);
             itemView.setOnClickListener( v -> {
                  int position = getAdapterPosition();
                  final TermEntity current = terms.get(position);

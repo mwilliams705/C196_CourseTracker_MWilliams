@@ -68,9 +68,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
-            courseTitle=itemView.findViewById(R.id.assessmentTitle);
-            courseStart=itemView.findViewById(R.id.assessmentDateTextView);
-            courseEnd=itemView.findViewById(R.id.assessmentTypeTextView);
+            courseTitle=itemView.findViewById(R.id.instructorName);
+            courseStart=itemView.findViewById(R.id.instructorPhoneListItemTextView);
+            courseEnd=itemView.findViewById(R.id.instructorEmailListItemTextView);
             itemView.setOnClickListener(v->{
                 int position = getAdapterPosition();
                 final CourseEntity current = courses.get(position);

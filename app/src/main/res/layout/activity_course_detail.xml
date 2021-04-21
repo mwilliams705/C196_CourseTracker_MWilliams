@@ -21,7 +21,7 @@
         android:background="#232323">
 
         <TextView
-            android:id="@+id/StartLabel"
+            android:id="@+id/instructorNameTextLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -31,36 +31,36 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/EndLabel"
+            android:id="@+id/instructorPhoneTextLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/end"
             android:textColor="#F8F8F8"
-            app:layout_constraintEnd_toEndOf="@+id/StartLabel"
-            app:layout_constraintTop_toBottomOf="@+id/StartLabel" />
+            app:layout_constraintEnd_toEndOf="@+id/instructorNameTextLabel"
+            app:layout_constraintTop_toBottomOf="@+id/instructorNameTextLabel" />
 
         <TextView
-            android:id="@+id/courseStartTextView"
+            android:id="@+id/instructorNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:text="@string/textview"
             android:textColor="#F8F8F8"
-            app:layout_constraintBottom_toBottomOf="@+id/StartLabel"
-            app:layout_constraintStart_toEndOf="@+id/StartLabel"
-            app:layout_constraintTop_toTopOf="@+id/StartLabel" />
+            app:layout_constraintBottom_toBottomOf="@+id/instructorNameTextLabel"
+            app:layout_constraintStart_toEndOf="@+id/instructorNameTextLabel"
+            app:layout_constraintTop_toTopOf="@+id/instructorNameTextLabel" />
 
         <TextView
-            android:id="@+id/courseEndTextView"
+            android:id="@+id/instructorPhoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:text="@string/textview"
             android:textColor="#F8F8F8"
-            app:layout_constraintBottom_toBottomOf="@+id/EndLabel"
-            app:layout_constraintStart_toEndOf="@+id/EndLabel"
-            app:layout_constraintTop_toTopOf="@+id/EndLabel" />
+            app:layout_constraintBottom_toBottomOf="@+id/instructorPhoneTextLabel"
+            app:layout_constraintStart_toEndOf="@+id/instructorPhoneTextLabel"
+            app:layout_constraintTop_toTopOf="@+id/instructorPhoneTextLabel" />
 
         <TextView
             android:id="@+id/courseStatusLabel"
@@ -69,8 +69,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/status"
             android:textColor="#F8F8F8"
-            app:layout_constraintEnd_toEndOf="@+id/EndLabel"
-            app:layout_constraintTop_toBottomOf="@+id/EndLabel" />
+            app:layout_constraintEnd_toEndOf="@+id/instructorPhoneTextLabel"
+            app:layout_constraintTop_toBottomOf="@+id/instructorPhoneTextLabel" />
 
         <TextView
             android:id="@+id/courseStatusTextView"
@@ -222,7 +222,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editCourseFAB"
+        android:id="@+id/editInstructorFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

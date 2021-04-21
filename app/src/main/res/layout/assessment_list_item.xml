@@ -8,7 +8,7 @@
     android:background="@color/darkListItemBG">
 
     <TextView
-        android:id="@+id/assessmentTitle"
+        android:id="@+id/instructorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,45 +20,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/startDateLabel"
+        android:id="@+id/instructorPhoneListItemLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="Scheduled Date:"
         android:textColor="#EFEFEF"
-        app:layout_constraintStart_toStartOf="@+id/assessmentTitle"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle" />
+        app:layout_constraintStart_toStartOf="@+id/instructorName"
+        app:layout_constraintTop_toBottomOf="@+id/instructorName" />
 
     <TextView
-        android:id="@+id/endDateLabel"
+        android:id="@+id/instructorEmailListItemLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Assessment Type:"
         android:textColor="#EFEFEF"
-        app:layout_constraintEnd_toEndOf="@+id/startDateLabel"
-        app:layout_constraintTop_toBottomOf="@+id/startDateLabel" />
+        app:layout_constraintEnd_toEndOf="@+id/instructorPhoneListItemLabel"
+        app:layout_constraintTop_toBottomOf="@+id/instructorPhoneListItemLabel" />
 
     <TextView
-        android:id="@+id/assessmentDateTextView"
+        android:id="@+id/instructorPhoneListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:text="@string/textview"
         android:textColor="#EFEFEF"
-        app:layout_constraintBottom_toBottomOf="@+id/startDateLabel"
-        app:layout_constraintStart_toEndOf="@+id/startDateLabel"
-        app:layout_constraintTop_toTopOf="@+id/startDateLabel" />
+        app:layout_constraintBottom_toBottomOf="@+id/instructorPhoneListItemLabel"
+        app:layout_constraintStart_toEndOf="@+id/instructorPhoneListItemLabel"
+        app:layout_constraintTop_toTopOf="@+id/instructorPhoneListItemLabel" />
 
     <TextView
-        android:id="@+id/assessmentTypeTextView"
+        android:id="@+id/instructorEmailListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:text="@string/textview"
         android:textColor="#EFEFEF"
-        app:layout_constraintBottom_toBottomOf="@+id/endDateLabel"
-        app:layout_constraintStart_toEndOf="@+id/endDateLabel"
-        app:layout_constraintTop_toTopOf="@+id/endDateLabel" />
+        app:layout_constraintBottom_toBottomOf="@+id/instructorEmailListItemLabel"
+        app:layout_constraintStart_toEndOf="@+id/instructorEmailListItemLabel"
+        app:layout_constraintTop_toTopOf="@+id/instructorEmailListItemLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

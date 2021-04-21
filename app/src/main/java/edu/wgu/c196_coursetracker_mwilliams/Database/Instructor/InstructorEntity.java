@@ -8,8 +8,7 @@ import androidx.room.PrimaryKey;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
-@Entity(tableName = "instructors",
-        indices = {@Index(value = "instructor_id",unique = true)})
+@Entity(tableName = "instructors")
 public class InstructorEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "instructor_id")

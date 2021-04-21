@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/termNameEditText"
+        android:id="@+id/instructorNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -30,14 +30,14 @@
         app:layout_constraintTop_toBottomOf="@+id/termNameLabel" />
 
     <TextView
-        android:id="@+id/termStartDateLabel"
+        android:id="@+id/instructorPhoneLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Term Start:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/termNameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/termNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/instructorNameEditText" />
 
     <EditText
         android:id="@+id/startEditTextDate"
@@ -48,20 +48,20 @@
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termStartDateLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/instructorPhoneLabel" />
 
     <TextView
-        android:id="@+id/termEndDateLabel"
+        android:id="@+id/instructorEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Term End:"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/termStartDateLabel"
+        app:layout_constraintStart_toStartOf="@+id/instructorPhoneLabel"
         app:layout_constraintTop_toBottomOf="@+id/startEditTextDate" />
 
     <EditText
-        android:id="@+id/endEditTextDate"
+        android:id="@+id/instructorEmailTextEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -69,10 +69,10 @@
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termEndDateLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/instructorEmailLabel" />
 
     <Button
-        android:id="@+id/saveTermBtn"
+        android:id="@+id/saveInstructorBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"

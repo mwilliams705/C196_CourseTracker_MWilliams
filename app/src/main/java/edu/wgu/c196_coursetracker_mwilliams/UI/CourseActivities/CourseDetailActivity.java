@@ -2,7 +2,6 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,17 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
-import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
@@ -29,14 +22,12 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.AssessmentAdapter;
-import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.TermAdapter;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
 
 public class CourseDetailActivity extends AppCompatActivity {
     CourseViewModel courseViewModel;
     InstructorViewModel instructorViewModel;
     AssessmentViewModel assessmentViewModel;
-    AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+//    AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
 
     private int courseId;
 
@@ -54,10 +45,10 @@ public class CourseDetailActivity extends AppCompatActivity {
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
         InstructorEntity instructorEntity = instructorViewModel.getInstructorByID(courseEntity.getInstructor_id());
         assessmentViewModel = new ViewModelProvider(this).get(AssessmentViewModel.class);
-        assessmentViewModel.getAllAssessmentsByCourseID(courseId).observe(this,assessmentAdapter::setAssessments);
+//        assessmentViewModel.getAllAssessmentsByCourseID(courseId).observe(this,assessmentAdapter::setAssessments);
 
-        TextView courseStartTextView = findViewById(R.id.courseStartTextView);
-        TextView courseEndTextView = findViewById(R.id.courseEndTextView);
+        TextView courseStartTextView = findViewById(R.id.instructorNameTextView);
+        TextView courseEndTextView = findViewById(R.id.instructorPhoneTextView);
         TextView courseStatusTextView = findViewById(R.id.courseStatusTextView);
         TextView courseNoteTextView = findViewById(R.id.courseNoteTextView);
         TextView courseInstructorEmailTextView = findViewById(R.id.courseInstructorEmailTextView);
@@ -81,15 +72,15 @@ public class CourseDetailActivity extends AppCompatActivity {
 
 
 
-        RecyclerView assessmentRecycler = findViewById(R.id.courseAssessmentRecyclerView);
+//        RecyclerView assessmentRecycler = findViewById(R.id.courseAssessmentRecyclerView);
+//
+//
+//        assessmentRecycler.setLayoutManager(new LinearLayoutManager(this));
+//        assessmentRecycler.setAdapter(assessmentAdapter);
 
 
-        assessmentRecycler.setLayoutManager(new LinearLayoutManager(this));
-        assessmentRecycler.setAdapter(assessmentAdapter);
 
-
-
-        FloatingActionButton editCourseFAB = findViewById(R.id.editCourseFAB);
+        FloatingActionButton editCourseFAB = findViewById(R.id.editInstructorFAB);
         editCourseFAB.setOnClickListener(v -> {
             Intent editIntent = new Intent(CourseDetailActivity.this,CourseAddEditActivity.class);
             editIntent.putExtra("courseID", courseId);

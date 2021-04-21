@@ -16,12 +16,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.AssessmentAdapter;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
 
 public class AssessmentActivity extends AppCompatActivity {
 
@@ -38,14 +36,14 @@ public class AssessmentActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RecyclerView assessmentRecyclerView = findViewById(R.id.assessmentRecyclerView);
+        RecyclerView assessmentRecyclerView = findViewById(R.id.instructorRecyclerView);
         AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         assessmentRecyclerView.setAdapter(assessmentAdapter);
         assessmentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         assessmentViewModel.getAllAssessments().observe(this,assessmentAdapter::setAssessments);
 
-        FloatingActionButton addAssessmentFAB = findViewById(R.id.addAssessmentFAB);
+        FloatingActionButton addAssessmentFAB = findViewById(R.id.addInstructorFAB);
         addAssessmentFAB.setOnClickListener(this::addAssessment);
 
 

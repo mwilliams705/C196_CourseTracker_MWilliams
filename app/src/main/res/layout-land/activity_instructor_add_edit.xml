@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Term Name:"
+        android:text="Instructor Name:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         android:id="@+id/instructorNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -33,19 +33,19 @@
         android:id="@+id/instructorPhoneLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Term Start:"
+        android:layout_marginTop="8dp"
+        android:text="Phone:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/termNameLabel"
         app:layout_constraintTop_toBottomOf="@+id/instructorNameEditText" />
 
     <EditText
-        android:id="@+id/startEditTextDate"
+        android:id="@+id/instructorPhoneEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructorPhoneLabel" />
@@ -54,19 +54,19 @@
         android:id="@+id/instructorEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Term End:"
+        android:layout_marginTop="8dp"
+        android:text="Email:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/instructorPhoneLabel"
-        app:layout_constraintTop_toBottomOf="@+id/startEditTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/instructorPhoneEditText" />
 
     <EditText
         android:id="@+id/instructorEmailTextEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructorEmailLabel" />
@@ -75,7 +75,7 @@
         android:id="@+id/saveInstructorBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="32dp"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

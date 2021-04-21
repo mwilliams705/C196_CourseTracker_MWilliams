@@ -1,4 +1,4 @@
-package edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities;
+package edu.wgu.c196_coursetracker_mwilliams.UI.InstructorActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,50 +12,49 @@ import android.view.MenuItem;
 import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Objects;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.TermAdapter;
+import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.InstructorAdapter;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 
-public class TermActivity extends AppCompatActivity {
-    TermViewModel termViewModel;
+public class InstructorActivity extends AppCompatActivity {
+    InstructorViewModel instructorViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"onCreate");
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_term);
-        TermAdapter termAdapter = new TermAdapter(this);
-        RecyclerView termRecyclerView = findViewById(R.id.instructorRecyclerView);
-        FloatingActionButton addTermFAB = findViewById(R.id.addInstructorFAB);
+        setContentView(R.layout.activity_instructor);
 
-        setTitle("Terms");
+        FloatingActionButton addInstructorFAB = findViewById(R.id.addInstructorFAB);
+        RecyclerView instructorRecyclerView = findViewById(R.id.instructorRecyclerView);
+        InstructorAdapter instructorAdapter = new InstructorAdapter(this);
+
+        setTitle("Instructors");
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        instructorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        instructorRecyclerView.setAdapter(instructorAdapter);
 
-        termRecyclerView.setAdapter(termAdapter);
-        termRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
+        instructorViewModel.getAllInstructors().observe(this, instructorAdapter::setInstructors);
 
-        termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
-        termViewModel.getAllTerms().observe(this, termAdapter::setTerms);
-
-        addTermFAB.setOnClickListener(this::addTerm);
+        addInstructorFAB.setOnClickListener(this::addInstructor);
 
     }
 
-
-    public void addTerm(View view){
-        Intent intent = new Intent(TermActivity.this,TermAddEditActivity.class);
+    private void addInstructor(View view){
+        Intent intent = new Intent(InstructorActivity.this, InstructorAddEditActivity.class);
         startActivity(intent);
+
     }
 
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(TermActivity.this,MainActivity.class);
+        Intent intent = new Intent(InstructorActivity.this, MainActivity.class);
         startActivity(intent);
 
 

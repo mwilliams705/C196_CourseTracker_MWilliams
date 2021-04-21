@@ -29,10 +29,10 @@ public class TermAddEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_add_edit);
         Intent intent = getIntent();
 
-        EditText termNameEditText = findViewById(R.id.termNameEditText);
+        EditText termNameEditText = findViewById(R.id.instructorNameEditText);
         EditText startEditTextDate = findViewById(R.id.startEditTextDate);
-        EditText endEditTextDate = findViewById(R.id.endEditTextDate);
-        Button saveTermBtn = findViewById(R.id.saveTermBtn);
+        EditText endEditTextDate = findViewById(R.id.instructorEmailTextEdit);
+        Button saveTermBtn = findViewById(R.id.saveInstructorBtn);
 
 
 
@@ -87,20 +87,7 @@ public class TermAddEditActivity extends AppCompatActivity {
         this.termID = termID;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
-        if (termID == null){
-            intent = new Intent(TermAddEditActivity.this, TermActivity.class);
-        }else {
-            intent = new Intent(TermAddEditActivity.this, TermDetailActivity.class);
-            intent.putExtra("termID",termID);
-        }
-        startActivity(intent);
 
-
-        return super.onOptionsItemSelected(item);
-    }
 
     //    Lifecycle Logs
     private final String TAG = "Lifecycle";

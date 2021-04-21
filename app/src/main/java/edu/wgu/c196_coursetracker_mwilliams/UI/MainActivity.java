@@ -23,6 +23,8 @@ import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentAc
 import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentAddEditActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseAddEditActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.InstructorActivities.InstructorActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.InstructorActivities.InstructorAddEditActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermAddEditActivity;
 
@@ -69,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        instructorsBtn.setOnClickListener(v->{
-//            Intent intent = new Intent(MainActivity.this, InstructorActivity.class);
-//            startActivity(intent);
-//        });
+        instructorsBtn.setOnClickListener(v->{
+            Intent intent = new Intent(MainActivity.this, InstructorActivity.class);
+            startActivity(intent);
+        });
 
         addTermsFromMainFAB.setOnClickListener(v->{
             Intent intent= new Intent(MainActivity.this, TermAddEditActivity.class);
@@ -89,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        addInstructorsFromMainFAB.setOnClickListener(v->{
-//            Intent intent= new Intent(MainActivity.this, TermAddEditActivity.class);
-//            startActivity(intent);
-//        });
+        addInstructorsFromMainFAB.setOnClickListener(v->{
+            Intent intent= new Intent(MainActivity.this, InstructorAddEditActivity.class);
+            startActivity(intent);
+        });
     }
 
     //    Lifecycle Logs

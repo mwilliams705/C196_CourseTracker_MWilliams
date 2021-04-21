@@ -54,4 +54,30 @@ public class InstructorRepository {
 
         return instructor;
     }
+
+    public void insertInstructor(InstructorEntity instructorEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            instructorDAO.insert(instructorEntity);
+        });
+
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateInstructor(InstructorEntity instructorEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            instructorDAO.updateInstructor(instructorEntity);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

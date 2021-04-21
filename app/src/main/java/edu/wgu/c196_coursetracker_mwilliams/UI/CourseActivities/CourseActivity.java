@@ -2,7 +2,6 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +14,8 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
 import java.util.Objects;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseRepository;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.CourseAdapter;
@@ -37,8 +33,8 @@ public class CourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course);
 
         CourseAdapter courseAdapter = new CourseAdapter(this);
-        RecyclerView courseRecyclerView = findViewById(R.id.assessmentRecyclerView);
-        FloatingActionButton addCourseFAB = findViewById(R.id.addAssessmentFAB);
+        RecyclerView courseRecyclerView = findViewById(R.id.instructorRecyclerView);
+        FloatingActionButton addCourseFAB = findViewById(R.id.addInstructorFAB);
 
         courseRecyclerView.setAdapter(courseAdapter);
         courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
