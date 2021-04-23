@@ -1,8 +1,10 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI.InstructorActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
@@ -10,11 +12,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Objects;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.InstructorAdapter;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 
 public class InstructorActivity extends AppCompatActivity {
@@ -42,6 +47,35 @@ public class InstructorActivity extends AppCompatActivity {
         instructorViewModel.getAllInstructors().observe(this, instructorAdapter::setInstructors);
 
         addInstructorFAB.setOnClickListener(this::addInstructor);
+
+
+
+
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(InstructorActivity.this);
+                builder.setMessage("Are you sure you want to delete this instructor?")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            instructorViewModel.deleteInstructor(instructorAdapter.getInstructorAtPosition(viewHolder.getAdapterPosition()));
+                            Toast.makeText(InstructorActivity.this, "Instructor was deleted!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(InstructorActivity.this, InstructorActivity.class);
+                            startActivity(intent);
+                        }).setNegativeButton("Cancel", (dialog, which) -> {
+                    Intent intent = new Intent(InstructorActivity.this, InstructorActivity.class);
+                    startActivity(intent);
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }).attachToRecyclerView(instructorRecyclerView);
 
     }
 

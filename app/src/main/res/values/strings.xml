@@ -33,4 +33,10 @@
     <string name="add_course">Add Course</string>
     <string name="notes">Notes:</string>
     <string name="courses">Courses:</string>
+    <string name="name">Name</string>
+    <string name="assessment_name">Assessment Name</string>
+    <string name="assessment_date">Assessment Date</string>
+    <string name="save">Save</string>
+    <string name="course">Course:</string>
+    <string name="assesment_type">Assesment Type:</string>
 </resources>

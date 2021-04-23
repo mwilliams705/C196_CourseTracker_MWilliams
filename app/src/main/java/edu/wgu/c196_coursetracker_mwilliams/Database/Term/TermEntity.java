@@ -1,6 +1,5 @@
 package edu.wgu.c196_coursetracker_mwilliams.Database.Term;
 
-import android.widget.Adapter;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -1,8 +1,10 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,6 +23,7 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewMo
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.AssessmentAdapter;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
 
 public class AssessmentActivity extends AppCompatActivity {
 
@@ -45,6 +49,30 @@ public class AssessmentActivity extends AppCompatActivity {
 
         FloatingActionButton addAssessmentFAB = findViewById(R.id.addInstructorFAB);
         addAssessmentFAB.setOnClickListener(this::addAssessment);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AssessmentActivity.this);
+                builder.setMessage("Are you sure you want to delete this assessment?")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            assessmentViewModel.deleteAssessment(assessmentAdapter.getAssessmentAtPosition(viewHolder.getAdapterPosition()));
+                            Toast.makeText(AssessmentActivity.this, "Assessment was deleted!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AssessmentActivity.this, AssessmentActivity.class);
+                            startActivity(intent);
+                        }).setNegativeButton("Cancel", (dialog, which) -> {
+                    Intent intent = new Intent(AssessmentActivity.this, AssessmentActivity.class);
+                    startActivity(intent);
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }).attachToRecyclerView(assessmentRecyclerView);
 
 
     }

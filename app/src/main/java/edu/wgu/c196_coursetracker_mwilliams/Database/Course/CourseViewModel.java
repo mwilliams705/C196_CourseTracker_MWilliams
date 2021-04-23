@@ -5,8 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import java.util.List;
+
 
 public class CourseViewModel extends AndroidViewModel {
 
@@ -37,6 +37,6 @@ public class CourseViewModel extends AndroidViewModel {
         return repository.getCourseByID(course_id);
     }
 
-
+    public void deleteCourse(CourseEntity courseEntity){repository.deleteCourse(courseEntity);}
 
 }

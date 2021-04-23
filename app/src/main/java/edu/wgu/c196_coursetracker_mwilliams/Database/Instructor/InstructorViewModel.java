@@ -1,5 +1,6 @@
 package edu.wgu.c196_coursetracker_mwilliams.Database.Instructor;
 
+
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+
+
 
 public class InstructorViewModel extends AndroidViewModel {
     private final InstructorRepository repository;
@@ -28,4 +31,8 @@ public class InstructorViewModel extends AndroidViewModel {
     public void insertInstructor(InstructorEntity instructorEntity){repository.insertInstructor(instructorEntity);}
 
     public void updateInstructor(InstructorEntity instructorEntity){repository.updateInstructor(instructorEntity);}
+
+    public void deleteInstructor(InstructorEntity instructorEntity){
+        repository.deleteInstructor(instructorEntity);
+    }
 }

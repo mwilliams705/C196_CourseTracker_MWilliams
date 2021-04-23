@@ -2,11 +2,7 @@ package edu.wgu.c196_coursetracker_mwilliams.Database.Instructor;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
-
-import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Entity(tableName = "instructors")
 public class InstructorEntity {

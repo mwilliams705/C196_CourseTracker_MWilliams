@@ -63,6 +63,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     }
 
 
+    public TermEntity getTermAtPosition(int position){
+        return terms.get(position);
+    }
 
 
     class TermViewHolder extends RecyclerView.ViewHolder{

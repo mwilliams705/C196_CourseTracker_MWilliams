@@ -51,6 +51,10 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         notifyDataSetChanged();
     }
 
+    public AssessmentEntity getAssessmentAtPosition(int position){
+        return assessments.get(position);
+    }
+
     @Override
     public int getItemCount() {
         if(assessments!=null){

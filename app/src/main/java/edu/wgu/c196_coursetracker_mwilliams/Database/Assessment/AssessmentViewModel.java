@@ -1,7 +1,8 @@
 package edu.wgu.c196_coursetracker_mwilliams.Database.Assessment;
 
-import android.app.Application;
+import androidx.lifecycle.ViewModel;
 
+import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -10,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorRepository;
 
 public class AssessmentViewModel extends AndroidViewModel {
 
@@ -34,5 +34,9 @@ public class AssessmentViewModel extends AndroidViewModel {
 
     public AssessmentEntity getAssessmentByID(int assessmentID){
         return repository.getAssessmentByID(assessmentID);
+    }
+
+    public void deleteAssessment(AssessmentEntity assessmentEntity){
+        repository.deleteAssessment(assessmentEntity);
     }
 }

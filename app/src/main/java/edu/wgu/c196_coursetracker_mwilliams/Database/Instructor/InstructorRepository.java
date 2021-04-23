@@ -80,4 +80,17 @@ public class InstructorRepository {
         }
     }
 
+
+    public void deleteInstructor(InstructorEntity instructorEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            instructorDAO.delete(instructorEntity);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -45,4 +45,10 @@ public class AssessmentRepository {
 
         return assessmentEntity;
     }
+
+    public void deleteAssessment(AssessmentEntity assessmentEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            assessmentDAO.delete(assessmentEntity);
+        });
+    }
 }

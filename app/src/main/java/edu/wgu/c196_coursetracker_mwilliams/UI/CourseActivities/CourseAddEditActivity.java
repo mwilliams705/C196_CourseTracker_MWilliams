@@ -117,7 +117,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
 
         courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner,intent.getStringExtra("course_status")));
-        String status = courseStatusSpinner.getSelectedItem().toString();
+
 
 
 
@@ -127,6 +127,10 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
             courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
             CourseEntity courseEntity = courseViewModel.getCourseById(courseID);
 
+            courseStatusSpinner.setSelection(getSpinnerIndex(courseStatusSpinner,courseEntity.getCourse_status()));
+            courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner, intent.getStringExtra("instructorName")));
+            courseTermSpinner.setSelection(courseEntity.getTerm_id());
+
             courseNameEditText.setText(courseEntity.getCourse_title());
             courseStartDateEditText.setText(courseEntity.getCourse_start());
             courseEndDateEditText.setText(courseEntity.getCourse_end());
@@ -135,7 +139,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
 
 
             courseSaveBtn.setOnClickListener(v -> {
-
+                String status = courseStatusSpinner.getSelectedItem().toString();
                 int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
                 int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
 
@@ -161,7 +165,7 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
             courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
 
             courseSaveBtn.setOnClickListener(v -> {
-
+                String status = courseStatusSpinner.getSelectedItem().toString();
                 int termID =((TermEntity)( courseTermSpinner.getSelectedItem())).getTerm_id();
                 int instructorID = ((InstructorEntity)(courseInstructorSpinner.getSelectedItem())).getId();
 

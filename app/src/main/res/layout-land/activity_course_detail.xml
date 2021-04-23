@@ -24,7 +24,7 @@
             android:id="@+id/instructorNameTextLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:text="@string/start"
             android:textColor="#F8F8F8"
             app:layout_constraintEnd_toEndOf="@+id/courseInstructorPhoneLabel"
@@ -88,18 +88,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/notes"
             android:textColor="#F8F8F8"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailLabel" />
+            app:layout_constraintStart_toStartOf="@+id/scrollView2"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CourseNotesLabel">
 
             <LinearLayout
@@ -129,17 +130,18 @@
             android:text="@string/assessments"
             android:textColor="#D3D3D3"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/CourseNotesLabel"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailLabel"
+            tools:layout_editor_absoluteX="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/courseAssessmentRecyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="446dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/scrollView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/termCoursesLabel"
             app:layout_constraintVertical_bias="0.0" />

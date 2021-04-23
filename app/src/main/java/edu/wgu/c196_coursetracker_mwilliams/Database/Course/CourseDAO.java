@@ -10,7 +10,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 @Dao
 public interface CourseDAO {

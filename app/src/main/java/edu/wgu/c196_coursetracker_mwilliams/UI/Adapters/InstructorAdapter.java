@@ -52,6 +52,10 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.In
         } else return 0;
     }
 
+    public InstructorEntity getInstructorAtPosition(int position){
+        return instructors.get(position);
+    }
+
     public void setInstructors(List<InstructorEntity> instructors) {
         this.instructors = instructors;
         notifyDataSetChanged();

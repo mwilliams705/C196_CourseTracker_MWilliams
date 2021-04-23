@@ -3,7 +3,6 @@ package edu.wgu.c196_coursetracker_mwilliams.Database.Term;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import java.util.List;
 

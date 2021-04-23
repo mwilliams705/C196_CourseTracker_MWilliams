@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.CourseTrackerDatabase;
-import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 
 public class CourseRepository {
     private final CourseDAO courseDAO;

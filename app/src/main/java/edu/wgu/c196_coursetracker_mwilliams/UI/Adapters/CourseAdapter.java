@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseDetailActivity;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
@@ -57,6 +62,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void setCourses(List<CourseEntity> courses) {
         this.courses = courses;
         notifyDataSetChanged();
+    }
+
+    public CourseEntity getCourseAtPosition(int position) {
+        return courses.get(position);
     }
 
     class CourseViewHolder extends RecyclerView.ViewHolder {

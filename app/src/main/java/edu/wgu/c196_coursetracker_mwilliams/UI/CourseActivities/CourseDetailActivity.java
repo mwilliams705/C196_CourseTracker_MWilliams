@@ -84,7 +84,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         editCourseFAB.setOnClickListener(v -> {
             Intent editIntent = new Intent(CourseDetailActivity.this,CourseAddEditActivity.class);
             editIntent.putExtra("courseID", courseId);
-
+            editIntent.putExtra("instructorName",instructorEntity.getInstructor_name());
             startActivity(editIntent);
         });
 
@@ -101,6 +101,8 @@ public class CourseDetailActivity extends AppCompatActivity {
         setTitle(courseEntity.getCourse_title());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
+
+
 
     }
 
