@@ -28,6 +28,11 @@ public class AssessmentRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allAssessments = assessmentDAO.getAllAssessments();
         });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return allAssessments;
     }
 
@@ -35,6 +40,11 @@ public class AssessmentRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             allAssessments = assessmentDAO.getAllAssessmentsByCourseID(id);
         });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return allAssessments;
     }
 
@@ -42,7 +52,11 @@ public class AssessmentRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             assessmentEntity = assessmentDAO.getAssessmentByID(id);
         });
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return assessmentEntity;
     }
 
@@ -50,5 +64,28 @@ public class AssessmentRepository {
         CourseTrackerDatabase.dataWriteExecutor.execute(()->{
             assessmentDAO.delete(assessmentEntity);
         });
+
+    }
+
+    public void insertAssessment(AssessmentEntity assessmentEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            assessmentDAO.insert(assessmentEntity);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAssessment(AssessmentEntity assessmentEntity){
+        CourseTrackerDatabase.dataWriteExecutor.execute(()->{
+            assessmentDAO.updateAssessment(assessmentEntity);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -4,6 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.AssessmentActivities.AssessmentAddEditActivity">
+    tools:context=".UI.TermAddEditActivity">
 
+    <TextView
+        android:id="@+id/assessmentEditTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Assessment Name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/assessmentNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditTitleLabel" />
+
+    <TextView
+        android:id="@+id/assessmentEditDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Assessment Date:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/assessmentEditTitleLabel"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentNameEditText" />
+
+    <EditText
+        android:id="@+id/assessmentDateEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditDateLabel" />
+
+    <TextView
+        android:id="@+id/assessmentEditTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Assessment Type:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/assessmentEditDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentDateEditText" />
+
+    <Button
+        android:id="@+id/saveAssessmentBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentCourseSpinnerEdit" />
+
+    <Spinner
+        android:id="@+id/assessmentEditTypeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditTypeLabel" />
+
+    <TextView
+        android:id="@+id/assessmentCourseSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/course"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/assessmentEditTypeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditTypeSpinner" />
+
+    <Spinner
+        android:id="@+id/assessmentCourseSpinnerEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentCourseSpinnerLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

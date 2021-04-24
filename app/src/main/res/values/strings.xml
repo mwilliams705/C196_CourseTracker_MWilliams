@@ -39,4 +39,5 @@
     <string name="save">Save</string>
     <string name="course">Course:</string>
     <string name="assesment_type">Assesment Type:</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     CourseViewModel courseViewModel;
     InstructorViewModel instructorViewModel;
     AssessmentViewModel assessmentViewModel;
-//    AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+    AssessmentAdapter assessmentAdapter;
 
     private int courseId;
 
@@ -45,10 +46,11 @@ public class CourseDetailActivity extends AppCompatActivity {
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
         InstructorEntity instructorEntity = instructorViewModel.getInstructorByID(courseEntity.getInstructor_id());
         assessmentViewModel = new ViewModelProvider(this).get(AssessmentViewModel.class);
-//        assessmentViewModel.getAllAssessmentsByCourseID(courseId).observe(this,assessmentAdapter::setAssessments);
+        assessmentAdapter = new AssessmentAdapter(this);
+        assessmentViewModel.getAllAssessmentsByCourseID(courseId).observe(this,assessmentAdapter::setAssessments);
 
-        TextView courseStartTextView = findViewById(R.id.instructorNameTextView);
-        TextView courseEndTextView = findViewById(R.id.instructorPhoneTextView);
+        TextView courseStartTextView = findViewById(R.id.assessmentTypeTextView);
+        TextView courseEndTextView = findViewById(R.id.assessmentDateText);
         TextView courseStatusTextView = findViewById(R.id.courseStatusTextView);
         TextView courseNoteTextView = findViewById(R.id.courseNoteTextView);
         TextView courseInstructorEmailTextView = findViewById(R.id.courseInstructorEmailTextView);
@@ -72,15 +74,15 @@ public class CourseDetailActivity extends AppCompatActivity {
 
 
 
-//        RecyclerView assessmentRecycler = findViewById(R.id.courseAssessmentRecyclerView);
-//
-//
-//        assessmentRecycler.setLayoutManager(new LinearLayoutManager(this));
-//        assessmentRecycler.setAdapter(assessmentAdapter);
+        RecyclerView assessmentRecycler = findViewById(R.id.courseAssessmentRecyclerView);
+
+
+        assessmentRecycler.setLayoutManager(new LinearLayoutManager(this));
+        assessmentRecycler.setAdapter(assessmentAdapter);
 
 
 
-        FloatingActionButton editCourseFAB = findViewById(R.id.editInstructorFAB);
+        FloatingActionButton editCourseFAB = findViewById(R.id.editAssessmentFAB);
         editCourseFAB.setOnClickListener(v -> {
             Intent editIntent = new Intent(CourseDetailActivity.this,CourseAddEditActivity.class);
             editIntent.putExtra("courseID", courseId);
@@ -104,6 +106,12 @@ public class CourseDetailActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
     }
 
     public void setCourseId(int courseId) {

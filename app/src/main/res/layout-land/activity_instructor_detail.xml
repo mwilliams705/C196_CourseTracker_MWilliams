@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/instructorNameTextLabel"
+            android:id="@+id/assessmentTypeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -35,39 +35,39 @@
             app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
         <TextView
-            android:id="@+id/instructorPhoneTextLabel"
+            android:id="@+id/assessmentEditDateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Phone:"
             android:textColor="#F8F8F8"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/instructorNameTextLabel"
-            app:layout_constraintTop_toBottomOf="@+id/instructorNameTextLabel" />
+            app:layout_constraintEnd_toEndOf="@+id/assessmentTypeLabel"
+            app:layout_constraintTop_toBottomOf="@+id/assessmentTypeLabel" />
 
         <TextView
-            android:id="@+id/instructorNameTextView"
+            android:id="@+id/assessmentTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/textview"
             android:textColor="#F8F8F8"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/instructorNameTextLabel"
-            app:layout_constraintStart_toEndOf="@+id/instructorNameTextLabel"
-            app:layout_constraintTop_toTopOf="@+id/instructorNameTextLabel" />
+            app:layout_constraintBottom_toBottomOf="@+id/assessmentTypeLabel"
+            app:layout_constraintStart_toEndOf="@+id/assessmentTypeLabel"
+            app:layout_constraintTop_toTopOf="@+id/assessmentTypeLabel" />
 
         <TextView
-            android:id="@+id/instructorPhoneTextView"
+            android:id="@+id/assessmentDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/textview"
             android:textColor="#F8F8F8"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/instructorPhoneTextLabel"
-            app:layout_constraintStart_toEndOf="@+id/instructorPhoneTextLabel"
-            app:layout_constraintTop_toTopOf="@+id/instructorPhoneTextLabel" />
+            app:layout_constraintBottom_toBottomOf="@+id/assessmentEditDateLabel"
+            app:layout_constraintStart_toEndOf="@+id/assessmentEditDateLabel"
+            app:layout_constraintTop_toTopOf="@+id/assessmentEditDateLabel" />
 
         <TextView
             android:id="@+id/instructorEmailTextLabel"
@@ -77,8 +77,8 @@
             android:text="Email:"
             android:textColor="@color/almostWhite"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/instructorPhoneTextLabel"
-            app:layout_constraintTop_toBottomOf="@+id/instructorPhoneTextLabel" />
+            app:layout_constraintEnd_toEndOf="@+id/assessmentEditDateLabel"
+            app:layout_constraintTop_toBottomOf="@+id/assessmentEditDateLabel" />
 
         <TextView
             android:id="@+id/instructorEmailTextView"
@@ -95,7 +95,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editInstructorFAB"
+        android:id="@+id/editAssessmentFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

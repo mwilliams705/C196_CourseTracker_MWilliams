@@ -15,9 +15,6 @@ import java.util.Objects;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermAddEditActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
 
 public class InstructorAddEditActivity extends AppCompatActivity {
 
@@ -31,10 +28,10 @@ public class InstructorAddEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instructor_add_edit);
         Intent intent = getIntent();
 
-        EditText instructorNameEditText = findViewById(R.id.instructorNameEditText);
+        EditText instructorNameEditText = findViewById(R.id.assessmentNameEditText);
         EditText instructorPhoneEditText = findViewById(R.id.instructorPhoneEditText);
         EditText instructorEmailEditText = findViewById(R.id.instructorEmailTextEdit);
-        Button saveInstructorBtn = findViewById(R.id.saveInstructorBtn);
+        Button saveInstructorBtn = findViewById(R.id.saveAssessmentBtn);
 
         if (intent.hasExtra("instructorID")){
             setTitle("Edit Instructor");

@@ -44,11 +44,11 @@ public class TermDetailActivity extends AppCompatActivity {
 
         RecyclerView courseRecycler = findViewById(R.id.courseAssessmentRecyclerView);
         CourseAdapter courseAdapter = new CourseAdapter(this);
-        FloatingActionButton addCourseFab = findViewById(R.id.editInstructorFAB);
+        FloatingActionButton addCourseFab = findViewById(R.id.editAssessmentFAB);
 
 
-        TextView termStartTextView = findViewById(R.id.instructorNameTextView);
-        TextView termEndTextView = findViewById(R.id.instructorPhoneTextView);
+        TextView termStartTextView = findViewById(R.id.assessmentTypeTextView);
+        TextView termEndTextView = findViewById(R.id.assessmentDateText);
         termStartTextView.setText(termEntity.getTerm_start());
         termEndTextView.setText(termEntity.getTerm_end());
 

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,10 +30,10 @@ public class TermAddEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_add_edit);
         Intent intent = getIntent();
 
-        EditText termNameEditText = findViewById(R.id.instructorNameEditText);
-        EditText startEditTextDate = findViewById(R.id.startEditTextDate);
+        EditText termNameEditText = findViewById(R.id.assessmentNameEditText);
+        EditText startEditTextDate = findViewById(R.id.assessmentDateEditText);
         EditText endEditTextDate = findViewById(R.id.instructorEmailTextEdit);
-        Button saveTermBtn = findViewById(R.id.saveInstructorBtn);
+        Button saveTermBtn = findViewById(R.id.saveAssessmentBtn);
 
 
 
@@ -81,6 +82,37 @@ public class TermAddEditActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        if (getIntent().hasExtra("term_id")){
+            getMenuInflater().inflate(R.menu.menu_delete, menu);
+            return true;
+        }
+        else return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intentDetail = new Intent(TermAddEditActivity.this,TermDetailActivity.class);
+        Intent intentList = new Intent(TermAddEditActivity.this,TermActivity.class);
+
+
+        // TODO: 4/23/2021 fix this
+//        int id = item.getItemId();
+//
+//        switch (id){
+//            case R.id.delete:
+//        }
+
+
+        if (getIntent().hasExtra("term_id")){
+            intentDetail.putExtra("term_id",termID);
+            startActivity(intentDetail);
+        }else startActivity(intentList);
+        return super.onOptionsItemSelected(item);
     }
 
     public void setTermID(int termID) {

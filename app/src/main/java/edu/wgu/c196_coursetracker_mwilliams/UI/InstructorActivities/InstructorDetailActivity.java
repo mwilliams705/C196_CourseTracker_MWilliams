@@ -34,10 +34,10 @@ public class InstructorDetailActivity extends AppCompatActivity {
         setInstructorID(intent.getIntExtra("instructorID",0));
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
         InstructorEntity instructorEntity = instructorViewModel.getInstructorByID(instructorID);
-        FloatingActionButton editInstructorFAB = findViewById(R.id.editInstructorFAB);
+        FloatingActionButton editInstructorFAB = findViewById(R.id.editAssessmentFAB);
 
-        TextView instructorName = findViewById(R.id.instructorNameTextView);
-        TextView instructorPhone = findViewById(R.id.instructorPhoneTextView);
+        TextView instructorName = findViewById(R.id.assessmentTypeTextView);
+        TextView instructorPhone = findViewById(R.id.assessmentDateText);
         TextView instructorEmail = findViewById(R.id.instructorEmailTextView);
 
         instructorName.setText(instructorEntity.getInstructor_name());

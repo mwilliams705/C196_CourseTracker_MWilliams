@@ -7,7 +7,7 @@
     tools:context=".UI.TermAddEditActivity">
 
     <TextView
-        android:id="@+id/termNameLabel"
+        android:id="@+id/assessmentEditTitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/instructorNameEditText"
+        android:id="@+id/assessmentNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -27,17 +27,17 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termNameLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditTitleLabel" />
 
     <TextView
-        android:id="@+id/instructorPhoneLabel"
+        android:id="@+id/assessmentEditDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Phone:"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/termNameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/instructorNameEditText" />
+        app:layout_constraintStart_toStartOf="@+id/assessmentEditTitleLabel"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentNameEditText" />
 
     <EditText
         android:id="@+id/instructorPhoneEditText"
@@ -48,16 +48,16 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructorPhoneLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditDateLabel" />
 
     <TextView
-        android:id="@+id/instructorEmailLabel"
+        android:id="@+id/assessmentEditTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Email:"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/instructorPhoneLabel"
+        app:layout_constraintStart_toStartOf="@+id/assessmentEditDateLabel"
         app:layout_constraintTop_toBottomOf="@+id/instructorPhoneEditText" />
 
     <EditText
@@ -69,10 +69,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructorEmailLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEditTypeLabel" />
 
     <Button
-        android:id="@+id/saveInstructorBtn"
+        android:id="@+id/saveAssessmentBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
