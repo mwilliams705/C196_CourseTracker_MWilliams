@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -134,6 +135,13 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
 
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
+    }
+
 
     public void setAssessmentID(Integer assessmentID) {
         this.assessmentID = assessmentID;

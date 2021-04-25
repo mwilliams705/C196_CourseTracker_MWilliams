@@ -130,14 +130,14 @@
             android:text="@string/assessments"
             android:textColor="#D3D3D3"
             android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailLabel"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintStart_toStartOf="@+id/courseInstructorEmailLabel"
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailLabel" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/courseAssessmentRecyclerView"
             android:layout_width="446dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -209,17 +209,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/courseInstructorEmailLabel"
             app:layout_constraintStart_toEndOf="@+id/courseInstructorEmailLabel"
             app:layout_constraintTop_toTopOf="@+id/courseInstructorEmailLabel" />
-
-        <ImageButton
-            android:id="@+id/shareNoteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/darkBG"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

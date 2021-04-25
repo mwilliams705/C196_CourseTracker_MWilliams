@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import java.util.Objects;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.AssessmentAdapter;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
 
@@ -77,12 +79,23 @@ public class AssessmentActivity extends AppCompatActivity {
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(AssessmentActivity.this, MainActivity.class);
-        startActivity(intent);
+        int id = item.getItemId();
+        if (id==R.id.delete){
+            Toast.makeText(this,"Swipe to delete", Toast.LENGTH_LONG).show();
 
-
+        }else {
+            Intent intent = new Intent(AssessmentActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 

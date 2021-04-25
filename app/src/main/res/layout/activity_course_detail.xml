@@ -208,17 +208,6 @@
             app:layout_constraintStart_toEndOf="@+id/courseInstructorEmailLabel"
             app:layout_constraintTop_toTopOf="@+id/courseInstructorEmailLabel" />
 
-        <ImageButton
-            android:id="@+id/shareNoteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/darkBG"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

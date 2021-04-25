@@ -1,6 +1,7 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,11 +25,13 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.CourseAdapter;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
 
 public class TermDetailActivity extends AppCompatActivity {
     TermViewModel termViewModel;
     CourseViewModel courseViewModel;
-
+    TermEntity termEntity;
     private int termId;
 
 
@@ -40,7 +45,7 @@ public class TermDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         setTermId(intent.getIntExtra("termID",0));
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
-        TermEntity termEntity = termViewModel.getTermById(termId);
+        termEntity = termViewModel.getTermById(termId);
 
         RecyclerView courseRecycler = findViewById(R.id.courseAssessmentRecyclerView);
         CourseAdapter courseAdapter = new CourseAdapter(this);
@@ -76,13 +81,33 @@ public class TermDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
+        int id = item.getItemId();
+        if (id==R.id.delete){
 
-        startActivity(intent);
 
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(TermDetailActivity.this);
+            builder.setMessage("Are you sure you want to delete "+ termEntity.getTerm_title() +"?")
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        termViewModel.deleteTerm(termEntity);
+                        Toast.makeText(TermDetailActivity.this, termEntity.getTerm_title()+" Deleted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
+                        startActivity(intent);
+                    }).setNegativeButton("Cancel", (dialog, which) -> {
+                Intent intent = new Intent(TermDetailActivity.this, TermDetailActivity.class);
+                startActivity(intent);
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
         return super.onOptionsItemSelected(item);
     }
 

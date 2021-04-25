@@ -3,6 +3,7 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Application;
@@ -37,16 +38,14 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
     TermViewModel termViewModel;
     InstructorViewModel instructorViewModel;
     CourseViewModel courseViewModel;
-
     public Integer courseID;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"onCreate");
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
         instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
-
+        courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
         Intent intent = getIntent();
 
         super.onCreate(savedInstanceState);
@@ -58,48 +57,44 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
         EditText courseNoteMultiLine = findViewById(R.id.courseNoteMultiLine);
         Button courseSaveBtn = findViewById(R.id.courseSaveBtn);
 
+
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
         Spinner courseTermSpinner = findViewById(R.id.courseTermSpinner);
         List<TermEntity> terms = new ArrayList<>();
 
-        ArrayAdapter<TermEntity> termSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, terms);
+        ArrayAdapter<TermEntity> termSpinnerAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, terms);
 
         termSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
-
         termViewModel.getAllTerms().observe(this, termSpinnerAdapter::addAll);
 
         termSpinnerAdapter.notifyDataSetChanged();
 
-
         courseTermSpinner.setAdapter(termSpinnerAdapter);
         courseTermSpinner.setOnItemSelectedListener(this);
 
-
-
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
-
         Spinner courseInstructorSpinner = findViewById(R.id.courseInstructorSpinner);
         List<InstructorEntity> instructors = new ArrayList<>();
 
-
-
         ArrayAdapter<InstructorEntity> instructorSpinnerAdapter = new ArrayAdapter<>(this,R.layout.spinner_item,instructors);
-        instructorSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
 
+        instructorSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         instructorViewModel.getAllInstructors().observe(this, instructorSpinnerAdapter::addAll);
 
         instructorSpinnerAdapter.notifyDataSetChanged();
 
-
         courseInstructorSpinner.setAdapter(instructorSpinnerAdapter);
         courseInstructorSpinner.setOnItemSelectedListener(this);
+
+
 
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 
         Spinner courseStatusSpinner = findViewById(R.id.courseStatusSpinner);
+
         ArrayList<String> statuses = new ArrayList<>();
         statuses.add("In Progress");
         statuses.add("Completed");
@@ -124,17 +119,22 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
         if (intent.hasExtra("courseID")){
             setTitle("Edit Course");
             setCourseID(intent.getIntExtra("courseID",0));
-            courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
+
+            instructorViewModel = new ViewModelProvider(this).get(InstructorViewModel.class);
             CourseEntity courseEntity = courseViewModel.getCourseById(courseID);
 
-            courseStatusSpinner.setSelection(getSpinnerIndex(courseStatusSpinner,courseEntity.getCourse_status()));
-            courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner, intent.getStringExtra("instructorName")));
-            courseTermSpinner.setSelection(courseEntity.getTerm_id());
+
 
             courseNameEditText.setText(courseEntity.getCourse_title());
             courseStartDateEditText.setText(courseEntity.getCourse_start());
             courseEndDateEditText.setText(courseEntity.getCourse_end());
             courseNoteMultiLine.setText(courseEntity.getCourse_note());
+
+
+            courseStatusSpinner.setSelection(getSpinnerIndex(courseStatusSpinner,courseEntity.getCourse_status()));
+            String instructorName = intent.getStringExtra("instructorName");
+            courseInstructorSpinner.setSelection(getSpinnerIndex(courseInstructorSpinner,instructorName));
+            courseTermSpinner.setSelection(courseEntity.getTerm_id());
 
 
 
@@ -245,6 +245,10 @@ public class CourseAddEditActivity extends AppCompatActivity implements AdapterV
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
+
+
+
+
     }
 
     @Override
