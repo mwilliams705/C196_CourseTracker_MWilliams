@@ -95,7 +95,7 @@ public class CourseActivity extends AppCompatActivity {
         if (id==R.id.delete){
             Toast.makeText(this,"Swipe to delete", Toast.LENGTH_LONG).show();
 
-        }else {
+        }if(id == android.R.id.home) {
             Intent intent = new Intent(CourseActivity.this,MainActivity.class);
             startActivity(intent);
         }

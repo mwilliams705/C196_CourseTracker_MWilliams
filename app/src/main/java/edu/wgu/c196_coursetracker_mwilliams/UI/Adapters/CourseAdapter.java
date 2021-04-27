@@ -59,6 +59,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         else return 0;
     }
 
+    public List<CourseEntity> getCourses() {
+        return courses;
+    }
+
     public void setCourses(List<CourseEntity> courses) {
         this.courses = courses;
         notifyDataSetChanged();

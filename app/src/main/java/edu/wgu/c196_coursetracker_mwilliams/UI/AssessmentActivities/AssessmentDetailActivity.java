@@ -5,6 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,18 +18,22 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
-import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseDetailActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
-import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.MyNotificationBroadcastReceiver;
 
 public class AssessmentDetailActivity extends AppCompatActivity {
+    public static int alertID;
+    Date assessmentDate;
     AssessmentViewModel assessmentViewModel;
     AssessmentEntity assessmentEntity;
     int assessmentID;
@@ -51,7 +58,7 @@ public class AssessmentDetailActivity extends AppCompatActivity {
 
         editAssessmentFAB.setOnClickListener(v->{
             Intent editIntent = new Intent(AssessmentDetailActivity.this,AssessmentAddEditActivity.class);
-            editIntent.getIntExtra("assessmentID", assessmentID);
+            editIntent.putExtra("assessmentID",assessmentID);
             startActivity(editIntent);
         });
 
@@ -62,16 +69,29 @@ public class AssessmentDetailActivity extends AppCompatActivity {
         }
         else assessmentTypeTextView.setText("PA");
 
+
         TextView assessmentDateText = findViewById(R.id.assessmentDateText);
         assessmentDateText.setText(assessmentEntity.getAssessment_date());
 
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy", Locale.US);
+        Date dateObject;
+
+
+        try {
+            String textDate=assessmentDateText.getText().toString();
+            Log.d("Text date", textDate);
+            dateObject = formatter.parse(textDate);
+            assessmentDate = dateObject;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        getMenuInflater().inflate(R.menu.assessment_detail_menu, menu);
         return true;
     }
 
@@ -79,8 +99,8 @@ public class AssessmentDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id==R.id.delete){
 
+        if (id==R.id.delete){
 
             AlertDialog.Builder builder = new AlertDialog.Builder(AssessmentDetailActivity.this);
             builder.setMessage("Are you sure you want to delete "+ assessmentEntity.getAssessment_title() +"?")
@@ -95,9 +115,24 @@ public class AssessmentDetailActivity extends AppCompatActivity {
             });
             AlertDialog alert = builder.create();
             alert.show();
-        }else {
+            return true;
+        }
+        if (id==R.id.set_notification){
+
+            Toast.makeText(this,"Assessment Notification Added!", Toast.LENGTH_SHORT).show();
+
+            Intent setReminderIntent = new Intent(AssessmentDetailActivity.this, MyNotificationBroadcastReceiver.class);
+            setReminderIntent.putExtra("key", "Assessment Today: " + assessmentEntity.getAssessment_title());
+            PendingIntent sender = PendingIntent.getBroadcast(AssessmentDetailActivity.this,++alertID,setReminderIntent,0);
+            AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP, assessmentDate.getTime() ,sender);
+            return true;
+        }
+        if (id==android.R.id.home){
             Intent intent = new Intent(AssessmentDetailActivity.this, AssessmentActivity.class);
             startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

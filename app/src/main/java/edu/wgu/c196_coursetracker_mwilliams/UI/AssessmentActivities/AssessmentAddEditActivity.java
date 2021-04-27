@@ -1,5 +1,6 @@
 package edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,13 +18,16 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseAddEditActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.CourseActivities.CourseDetailActivity;
 
 public class AssessmentAddEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -76,6 +81,8 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
 //--------------------------------------------------------------------------------------------------
 
 
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_36);
 
 
 
@@ -90,12 +97,12 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
 
             assessmentNameEditText.setText(assessmentEntity.getAssessment_title());
             assessmentDateEditText.setText(assessmentEntity.getAssessment_date());
-            assessmentEditTypeSpinner.setSelection(getSpinnerIndex(assessmentEditTypeSpinner,intent.getStringExtra("assessmentName")));
-            assessmentCourseSpinnerEdit.setSelection(getSpinnerIndex(assessmentCourseSpinnerEdit,courseEntity.getCourse_title()));
+//            assessmentEditTypeSpinner.setSelection(getSpinnerIndex(assessmentEditTypeSpinner,intent.getStringExtra("assessmentName")));
+//            assessmentCourseSpinnerEdit.setSelection(getSpinnerIndex(assessmentCourseSpinnerEdit,courseEntity.getCourse_title()));
 
 
             saveAssessmentBtn.setOnClickListener(v->{
-                int courseID = ((AssessmentEntity)(assessmentCourseSpinnerEdit.getSelectedItem())).getId();
+                int courseID = ((CourseEntity)(assessmentCourseSpinnerEdit.getSelectedItem())).getCourse_id();
 
                 assessmentEntity.setAssessment_title(assessmentNameEditText.getText().toString());
                 assessmentEntity.setAssessment_date(assessmentDateEditText.getText().toString());
@@ -111,8 +118,9 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
 
         }
         else {
+            setTitle("Add Assessment");
             saveAssessmentBtn.setOnClickListener(v->{
-                setTitle("Add Assessment");
+
 
                 int courseID = ((CourseEntity)(assessmentCourseSpinnerEdit.getSelectedItem())).getCourse_id();
 
@@ -136,11 +144,7 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
 
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_delete, menu);
-        return true;
-    }
+
 
 
     public void setAssessmentID(Integer assessmentID) {
@@ -173,6 +177,19 @@ public class AssessmentAddEditActivity extends AppCompatActivity implements Adap
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        if (courseID == null){
+            intent = new Intent(AssessmentAddEditActivity.this, AssessmentActivity.class);
+        }else {
+            intent = new Intent(AssessmentAddEditActivity.this, AssessmentDetailActivity.class);
+            intent.putExtra("courseID",courseID);
+        }
+        startActivity(intent);
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
     //    Lifecycle Logs

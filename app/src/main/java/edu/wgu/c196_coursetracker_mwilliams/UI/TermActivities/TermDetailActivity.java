@@ -3,6 +3,7 @@ package edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +19,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Term.TermViewModel;
@@ -32,6 +36,10 @@ public class TermDetailActivity extends AppCompatActivity {
     TermViewModel termViewModel;
     CourseViewModel courseViewModel;
     TermEntity termEntity;
+
+    CourseAdapter courseAdapter;
+
+    List<CourseEntity> coursesForCount = new ArrayList<>();
     private int termId;
 
 
@@ -48,8 +56,9 @@ public class TermDetailActivity extends AppCompatActivity {
         termEntity = termViewModel.getTermById(termId);
 
         RecyclerView courseRecycler = findViewById(R.id.courseAssessmentRecyclerView);
-        CourseAdapter courseAdapter = new CourseAdapter(this);
+        courseAdapter = new CourseAdapter(this);
         FloatingActionButton addCourseFab = findViewById(R.id.editAssessmentFAB);
+
 
 
         TextView termStartTextView = findViewById(R.id.assessmentTypeTextView);
@@ -59,6 +68,7 @@ public class TermDetailActivity extends AppCompatActivity {
 
         courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
         courseViewModel.getCoursesByTermId(termId).observe(this, courseAdapter::setCourses);
+
 
 
         courseRecycler.setAdapter(courseAdapter);
@@ -93,20 +103,46 @@ public class TermDetailActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.delete){
 
+            int count = courseAdapter.getItemCount();
+            Log.d("Count",String.valueOf(count));
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(TermDetailActivity.this);
-            builder.setMessage("Are you sure you want to delete "+ termEntity.getTerm_title() +"?")
-                    .setPositiveButton("OK", (dialog, which) -> {
-                        termViewModel.deleteTerm(termEntity);
-                        Toast.makeText(TermDetailActivity.this, termEntity.getTerm_title()+" Deleted", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
-                        startActivity(intent);
-                    }).setNegativeButton("Cancel", (dialog, which) -> {
-                Intent intent = new Intent(TermDetailActivity.this, TermDetailActivity.class);
-                startActivity(intent);
-            });
-            AlertDialog alert = builder.create();
-            alert.show();
+
+            if (count == 0){
+                Log.d("Delete menu clicked","count was " + count + " and can be deleted");
+                AlertDialog.Builder builder = new AlertDialog.Builder(TermDetailActivity.this);
+                builder.setMessage("Are you sure you want to delete "+ termEntity.getTerm_title() +"?")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            termViewModel.deleteTerm(termEntity);
+                            Toast.makeText(TermDetailActivity.this, termEntity.getTerm_title()+" Deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
+                            startActivity(intent);
+                        }).setNegativeButton("Cancel", (dialog, which) -> {
+                    Intent intent = new Intent(TermDetailActivity.this, TermDetailActivity.class);
+                    intent.putExtra("termID",termId);
+                    startActivity(intent);
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }if (count>0){
+                Log.d("Delete menu clicked","count was " + count + " and cant be deleted");
+                AlertDialog.Builder builder = new AlertDialog.Builder(TermDetailActivity.this);
+                builder.setMessage("Term "+ termEntity.getTerm_title() +" can't be deleted because it has " + count +" courses associated with it. Delete courses and try again.")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            Intent intent = new Intent(TermDetailActivity.this, TermDetailActivity.class);
+                            intent.putExtra("termID",termId);
+                            startActivity(intent);
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+
+
+
+
+        }
+        if (id==android.R.id.home){
+            Intent intent = new Intent(TermDetailActivity.this, TermActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -114,6 +150,7 @@ public class TermDetailActivity extends AppCompatActivity {
     public void setTermId(int termId) {
         this.termId = termId;
     }
+
 
 
     //    Lifecycle Logs
@@ -134,6 +171,7 @@ public class TermDetailActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
+
     }
 
     @Override

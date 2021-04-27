@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_CourseTracker_MWilliams">
-        <activity android:name=".UI.InstructorActivities.InstructorAddEditActivity"></activity>
+        <receiver
+            android:name=".UI.MyNotificationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity android:name=".UI.InstructorActivities.InstructorAddEditActivity" />
         <activity android:name=".UI.InstructorActivities.InstructorDetailActivity" />
         <activity android:name=".UI.InstructorActivities.InstructorActivity" />
         <activity android:name=".UI.AssessmentActivities.AssessmentAddEditActivity" />

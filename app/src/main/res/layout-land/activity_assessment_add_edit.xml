@@ -26,7 +26,7 @@
         android:layout_marginTop="8dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/assessment_date"
+        android:hint="Assessment Date (MM/DD/YY)"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +21,13 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import edu.wgu.c196_coursetracker_mwilliams.Database.Assessment.AssessmentViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseEntity;
 import edu.wgu.c196_coursetracker_mwilliams.Database.Course.CourseViewModel;
@@ -25,6 +35,9 @@ import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorEntity
 import edu.wgu.c196_coursetracker_mwilliams.Database.Instructor.InstructorViewModel;
 import edu.wgu.c196_coursetracker_mwilliams.R;
 import edu.wgu.c196_coursetracker_mwilliams.UI.Adapters.AssessmentAdapter;
+import edu.wgu.c196_coursetracker_mwilliams.UI.AssessmentActivities.AssessmentDetailActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.MainActivity;
+import edu.wgu.c196_coursetracker_mwilliams.UI.MyNotificationBroadcastReceiver;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermActivity;
 import edu.wgu.c196_coursetracker_mwilliams.UI.TermActivities.TermDetailActivity;
 
@@ -33,6 +46,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     InstructorViewModel instructorViewModel;
     AssessmentViewModel assessmentViewModel;
     AssessmentAdapter assessmentAdapter;
+    Date startDate, endDate;
+    public static int alertID;
 
     CourseEntity courseEntity;
 
@@ -86,6 +101,18 @@ public class CourseDetailActivity extends AppCompatActivity {
         assessmentRecycler.setLayoutManager(new LinearLayoutManager(this));
         assessmentRecycler.setAdapter(assessmentAdapter);
 
+
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy", Locale.US);
+
+
+        try {
+            String startDateText = courseStartTextView.getText().toString();
+            String endDateText = courseEndTextView.getText().toString();
+            startDate = formatter.parse(startDateText);
+            endDate = formatter.parse(endDateText);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         FloatingActionButton editCourseFAB = findViewById(R.id.editAssessmentFAB);
@@ -145,28 +172,40 @@ public class CourseDetailActivity extends AppCompatActivity {
             Intent shareNoteIntent = new Intent(Intent.ACTION_SEND);
             shareNoteIntent.setType("text/plain");
             shareNoteIntent.putExtra(Intent.EXTRA_TEXT,courseEntity.getCourse_note());
+            shareNoteIntent.putExtra(Intent.EXTRA_TITLE,"Note for " + courseEntity.getCourse_title());
+            shareNoteIntent.putExtra(Intent.EXTRA_SUBJECT,"Note for " + courseEntity.getCourse_title());
             startActivity(Intent.createChooser(shareNoteIntent,"Share Using?"));
+            return true;
         }
-        else {
-            Intent intent = new Intent(CourseDetailActivity.this,CourseActivity.class);
+        if (id==R.id.set_notification){
+            Toast.makeText(this,"You will be notified on the start and end dates of this course.", Toast.LENGTH_LONG).show();
+            AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            Intent setStartReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
+            setStartReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " starts today!");
+            PendingIntent startSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setStartReminderIntent,0);
+
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP, startDate.getTime() ,startSender);
+
+
+            Intent setEndReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
+            setEndReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " ends today!");
+            PendingIntent endSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setEndReminderIntent,0);
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP, endDate.getTime() ,endSender);
+
+
+        }
+        if(id == android.R.id.home) {
+            Intent intent = new Intent(CourseDetailActivity.this, CourseActivity.class);
             startActivity(intent);
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-
-
-    private void checkThenDelete(){
-        if (assessmentAdapter.getItemCount() == 0){
-
-        }
-    }
-
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.put;
-//    }
 
     //    Lifecycle Logs
     private final String TAG = "Lifecycle";
