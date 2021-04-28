@@ -208,6 +208,30 @@
             app:layout_constraintStart_toEndOf="@+id/courseInstructorEmailLabel"
             app:layout_constraintTop_toTopOf="@+id/courseInstructorEmailLabel" />
 
+        <ImageButton
+            android:id="@+id/notifyStartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_baseline_notifications_active_24"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/assessmentTypeTextView"
+            app:layout_constraintStart_toEndOf="@+id/assessmentTypeTextView"
+            app:layout_constraintTop_toTopOf="@+id/assessmentTypeTextView"
+            app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
+
+        <ImageButton
+            android:id="@+id/notifyEndBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_baseline_notifications_active_24"
+            android:backgroundTint="@color/almostWhite"
+            app:layout_constraintBottom_toBottomOf="@+id/assessmentDateText"
+            app:layout_constraintStart_toEndOf="@+id/assessmentDateText"
+            app:layout_constraintTop_toTopOf="@+id/assessmentDateText"
+            app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

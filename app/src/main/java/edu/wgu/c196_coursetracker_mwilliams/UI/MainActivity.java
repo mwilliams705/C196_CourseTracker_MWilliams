@@ -39,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Welcome");
 
-        CourseRepository courseRepository = new CourseRepository(getApplication());
-        TermRepository termRepository= new TermRepository(getApplication());
-        AssessmentRepository assessmentRepository = new AssessmentRepository(getApplication());
-        InstructorRepository instructorRepository = new InstructorRepository(getApplication());
+
 
 
 

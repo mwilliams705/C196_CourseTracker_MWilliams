@@ -51,6 +51,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     CourseEntity courseEntity;
 
+    Bundle bundle;
 
     private int courseId;
 
@@ -73,6 +74,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         TextView courseStartTextView = findViewById(R.id.assessmentTypeTextView);
         TextView courseEndTextView = findViewById(R.id.assessmentDateText);
+        ImageButton notifyStartBtn = findViewById(R.id.notifyStartBtn);
+        ImageButton notifyEndBtn = findViewById(R.id.notifyEndBtn);
         TextView courseStatusTextView = findViewById(R.id.courseStatusTextView);
         TextView courseNoteTextView = findViewById(R.id.courseNoteTextView);
         TextView courseInstructorEmailTextView = findViewById(R.id.courseInstructorEmailTextView);
@@ -123,7 +126,32 @@ public class CourseDetailActivity extends AppCompatActivity {
             startActivity(editIntent);
         });
 
+        notifyStartBtn.setOnClickListener(v -> {
 
+            AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            Intent setStartReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
+
+            setStartReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " starts today!");
+            PendingIntent startSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setStartReminderIntent,0);
+            Toast.makeText(this,"You will be notified on the start date of this course!",Toast.LENGTH_LONG).show();
+            alarmManager.set(AlarmManager.RTC_WAKEUP, startDate.getTime() ,startSender);
+
+        });
+
+        // TODO: 4/28/21 This does not work correctly!!!!!!!!!!!!!! 
+        notifyEndBtn.setOnClickListener(v -> {
+
+            AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            Intent setEndReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
+            setEndReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " ends today!");
+
+            PendingIntent endSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setEndReminderIntent,0);
+            Toast.makeText(this,"You will be notified on the end date of this course!",Toast.LENGTH_LONG).show();
+            alarmManager.set(AlarmManager.RTC_WAKEUP, endDate.getTime() ,endSender);
+
+        });
 
 
 
@@ -176,26 +204,6 @@ public class CourseDetailActivity extends AppCompatActivity {
             shareNoteIntent.putExtra(Intent.EXTRA_SUBJECT,"Note for " + courseEntity.getCourse_title());
             startActivity(Intent.createChooser(shareNoteIntent,"Share Using?"));
             return true;
-        }
-        if (id==R.id.set_notification){
-            Toast.makeText(this,"You will be notified on the start and end dates of this course.", Toast.LENGTH_LONG).show();
-            AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-            Intent setStartReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
-            setStartReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " starts today!");
-            PendingIntent startSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setStartReminderIntent,0);
-
-
-            alarmManager.set(AlarmManager.RTC_WAKEUP, startDate.getTime() ,startSender);
-
-
-            Intent setEndReminderIntent = new Intent(CourseDetailActivity.this, MyNotificationBroadcastReceiver.class);
-            setEndReminderIntent.putExtra("key", "Course " + courseEntity.getCourse_title() + " ends today!");
-            PendingIntent endSender = PendingIntent.getBroadcast(CourseDetailActivity.this,++alertID,setEndReminderIntent,0);
-
-            alarmManager.set(AlarmManager.RTC_WAKEUP, endDate.getTime() ,endSender);
-
-
         }
         if(id == android.R.id.home) {
             Intent intent = new Intent(CourseDetailActivity.this, CourseActivity.class);
